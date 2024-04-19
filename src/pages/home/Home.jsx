@@ -1,8 +1,10 @@
-
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import './Home.css';
 import {Helmet} from "react-helmet";
-import headerpic from '../../assets/Header1.png'
+import header1 from '../../assets/Header1.png'
+import clinics from '../../assets/clinics.jpg'
+import route from '../../assets/MTB-route-bordjes.jpg'
+import rental from '../../assets/Verhuur.png'
 import Header from "../../components/header/Header.jsx";
 
 function Home() {
@@ -14,42 +16,55 @@ function Home() {
                 </Helmet>
             </div>
 
-            <main className="page-container">
-                <Header img={headerpic} img_title="bike-wheel" title="Welkom op de website van MTB-Clinics-Ede!" />
+            <main>
+                <Header img={header1} img_title="bike-wheel" title="Welkom op de website van MTB Clinics Ede!"/>
+                <section className= "outer-content-container">
+                    <div className="inner-content-container__text-restriction">
+                    <h2>
+                        Echt leren mountainbiken
+                    </h2>
+                    <p>
+                        Een mountainbike clinic volgen bij MTB Clinics Ede betekent werken aan jouw mountainbike skills. Met krachtige benen kom je ver, maar nog veel belangrijker is jouw techniek, controle en balans. Mountainbiken is iets heel anders dan fietsen op de stads- of racefiets.
+                    </p>
+                        <p>
+                        Vooral de basis van het mountainbiken is erg belangrijk. Hierin schuilen de geheimen van volledige controle en controle geeft vertrouwen. Hoe hoger het niveau, hoe meer details er belangrijk zijn. Dit zijn kleine verschillen die je zelf vaak niet kunt zien. In onze mountainbike clinics geven wij je tips en tricks om één te zijn met jouw mountainbike en te kunnen mountainbiken in ieder terrein. Je krijgt van ons gerichte aanwijzingen, nuttige feedback en veel persoonlijke aandacht. Ben je op zoek naar een MTB clinic voor beginner, geoefend of gevorderd? Wij bieden mountainbike clinics aan op ieder niveau zodat jij er het meeste uit kunt halen.
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis doloribus
-                    facilis iste placeat praesentium sint voluptatem. Architecto at, maiores?
-                </p>
-                <p className="content-container-col2">
-                    Consectetur adipisicing elit. Blanditiis cum, dolor ea enim fugiat fugit id inventore ipsam libero
-                    magni
-                    modi natus
-                    necessitatibus nisi optio quas qui quis quo, reprehenderit saepe similique sint sit soluta ut
-                    veritatis
-                    voluptatem.
-                    Ab aliquid amet animi aperiam assumenda, atque autem dolorum ducimus et excepturi ipsa magnam nemo
-                    nulla
-                    possimus provident,
-                    quos ratione repellendus sed sequi tempore! Accusantium amet commodi deleniti exercitationem impedit
-                    obcaecati quis repudiandae!
-                    Consectetur eligendi ipsam odio repellendus sequi veniam voluptas? Adipisci at consectetur eaque
-                    fuga
-                    hic inventore ipsa magnam
-                    provident vitae. Ad animi commodi consectetur, corporis dicta doloremque dolorum error hic inventore
-                    iste laudantium libero magnam
-                    mollitia necessitatibus nemo nesciunt nihil non obcaecati odio odit pariatur quae quaerat quas
-                    quisquam
-                    quos rem sapiente sequi
-                    similique sint vero? Accusamus aliquam aliquid blanditiis consequatur est et minima mollitia neque
-                    non,
-                    odit perspiciatis placeat
-                    provident quos, similique sit totam vero. Beatae consequatur cupiditate rerum?
-                </p>
-                <div></div>
-                <div></div>
-                <div></div>
+                        </p>
+                    </div>
+                </section>
+                <section>
+                <ul className='info-blocks'>
+                    <li className= 'info-items'>
+                    <h4>MTB-Clinics</h4>
+                        <img src={clinics} alt="clinics"/>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolore est laudantium natus nulla officiis pariatur! Eligendi mollitia quo sapiente.</p>
+                    </li>
+                        <li className= 'info-items'>
+                            <h4>MTB-Routes</h4>
+                            <img src={route} alt="mtb-routes"/>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolores exercitationem hic obcaecati officia porro quia recusandae, veritatis! Atque, natus.</p>
+                        </li>
+                        <li className= 'info-items'>
+                            <h4>MTB-Verhuur</h4>
+                            <img src={rental} alt="mtb-rental"/>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt qui, veniam? Accusamus adipisci amet doloribus ex nihil porro, reprehenderit tenetur?</p>
+                        </li>
+                    </ul>
+                </section>
             </main>
+            <footer className= 'footer'>
+                <h4>Contact gegevens</h4>
+                <p>adres</p>
+                <p>woonplaats</p>
+                <p>telefoonnummer</p>
+                <p>email</p>
+
+                <nav>
+                    <Link to="contact">
+                        Contact
+                    </Link>
+                </nav>
+            </footer>
         </>
     );
 }
