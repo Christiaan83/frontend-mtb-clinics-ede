@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import './Home.css';
 import {Helmet} from "react-helmet";
+import headerpic from '../../assets/Header1.png'
+import Header from "../../components/header/Header.jsx";
 
 function Home() {
     return (
@@ -13,7 +15,7 @@ function Home() {
             </div>
 
             <main className="page-container">
-
+                <Header img={headerpic} img_title="bike-wheel" title="Welkom op de website van MTB-Clinics-Ede!" />
 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut debitis doloribus
@@ -44,7 +46,9 @@ function Home() {
                     odit perspiciatis placeat
                     provident quos, similique sit totam vero. Beatae consequatur cupiditate rerum?
                 </p>
-                <p>Leer hier meer over het <Link to="/tanden-bleken">bleken van tanden</Link>.</p>
+                <div></div>
+                <div></div>
+                <div></div>
             </main>
         </>
     );
