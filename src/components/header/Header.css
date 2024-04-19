@@ -1,0 +1,18 @@
+.header-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.header-title {
+    position: absolute;
+    color: white;
+    font-size: 36px;
+    z-index: 1;
+}
