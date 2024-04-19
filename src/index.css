@@ -1,11 +1,11 @@
-/*In dit bestand plaats je alle algemene styling die geldt voor de gehele applicatie*/
+
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
 
 :root {
-  --color-primary: #38E991;
-  --color-secondary: #2C2F39;
-  --color-tertiary: #50535C;
-  --color-secondary-light: #E8E9ED;
+  --color-primary: #54E346;
+  --color-secondary: #416D19;
+  --color-tertiary: #BFEA7C;
+  --color-yellow: #FFF67E;
   --color-white: #FFFFFF;
 }
 
@@ -24,106 +24,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  color: var(--color-secondary);
+
 }
 
 button, input, select, textarea {
   font-family: inherit;
 }
 
-button:hover {
-  cursor: pointer;
-}
-
-h1 {
-  font-size: 3.4em;
-  line-height: 1.1;
-  margin-block: 1em;
-}
-
-h2 {
-  margin-block: 2.3em;
-}
-
-h3 {
-  margin-block: 1.6em;
-}
-
-h4 {
-  margin-block: 1.33em;
-}
-
-p {
-  font-size: 1.2em;
-  margin-block: 0.5em;
-}
-
-img {
-  width: 100%;
-}
-
-figure {
-  margin: 0 0 2em 0;
-}
-
-figcaption {
-  text-align: right;
-  font-size: 0.9em;
-}
-
-a,
-a:visited {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-a:hover {
-}
-
-em {
-  font-style: italic;
-}
-
-button {
-  background-color: var(--color-primary);
-  color: var(--color-secondary);
-  font-weight: 600;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  display: inline;
-}
-
-/*----------- INNER- EN OUTER CONTAINERS ------------------- */
-
-.outer-content-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-/* Brede inner container*/
-.inner-content-container {
-  flex-basis: 1400px;
-  flex-shrink: 1;
-  flex-grow: 0;
-  align-items: center;
-}
-
-/* Smalle inner container voor tekst etc. */
-.inner-content-container__text-restriction {
-  flex-basis: 1000px;
-  flex-shrink: 1;
-  flex-grow: 0;
-  align-items: flex-start;
-}
-
-.inner-content-container,
-.inner-content-container__text-restriction {
-  margin: 0 20px;
-  padding: 100px 0;
-  display: flex;
-  flex-direction: column;
-}
