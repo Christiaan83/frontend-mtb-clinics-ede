@@ -7,7 +7,7 @@ function Navigation() {
     return (
         <nav>
             <div className="nav-container">
-                <h4><NavLink to="/">MTB Clinis-Ede</NavLink></h4>
+                <h4><NavLink to="/">MTB Clinics-Ede</NavLink></h4>
 
                 <ul>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
