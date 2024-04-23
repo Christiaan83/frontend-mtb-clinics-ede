@@ -1,12 +1,13 @@
 
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-primary: #54E346;
-  --color-secondary: #416D19;
+  --color-primary: #416D19;
+  --color-secondary: #54E346;
   --color-tertiary: #BFEA7C;
-  --color-yellow: #FFF67E;
   --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-light-green: #f7fcf3;
 }
 
 * {
@@ -24,6 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  background-color: #fffdf5;
 
 }
 
@@ -40,18 +42,9 @@ button, input, select, textarea {
   justify-content: center;
 }
 
-/* Brede inner container*/
 .inner-content-container {
-  flex-basis: 1400px;
+  width: 1000px;
   flex-shrink: 1;
   flex-grow: 0;
   align-items: center;
-}
-
-/* Smalle inner container voor tekst etc. */
-.inner-content-container__text-restriction {
-  flex-basis: 1000px;
-  flex-shrink: 1;
-  flex-grow: 0;
-  align-items: flex-start;
 }
