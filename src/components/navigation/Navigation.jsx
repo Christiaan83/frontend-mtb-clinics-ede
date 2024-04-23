@@ -12,11 +12,10 @@ function Navigation() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
 
             <div className= 'nav-container'>
-                <h4><NavLink to="/">MTB Clinics-Ede</NavLink></h4>
+                <h3><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                             to="/">MTB Clinics-Ede</NavLink></h3>
 
                 <ul>
-                    <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to="/">Home</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                                  to="/clinics">Clinics</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}

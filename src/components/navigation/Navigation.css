@@ -19,11 +19,11 @@
     height: 60px;
 }
 .navbar.scrolled{
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
 }
 
 nav a:hover {
-    color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
 ul {
@@ -34,7 +34,7 @@ ul {
     align-items: center;
 }
 .active-menu-link {
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
 }
 
 .default-menu-link {
