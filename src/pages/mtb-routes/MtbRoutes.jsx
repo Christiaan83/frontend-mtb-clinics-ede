@@ -2,6 +2,8 @@ import {Helmet} from "react-helmet";
 import mtbRoute from "../../assets/mtbRoute.jpg";
 import mtbSymbol from "../../assets/mtb-teken-groen.jpg"
 import Header from "../../components/header/Header.jsx";
+import TypeName from "../../helpers/changeTypeName.jsx"
+import DifficultyName from "../../helpers/changeDifficultyName.jsx"
 import './MtbRoutes.css'
 import {useEffect, useState} from "react";
 import axios from 'axios';
@@ -27,10 +29,11 @@ function MtbRoutes() {
                 toggleError(true);
             }
         }
+
         fetchAllRoutes();
     }, []);
 
-    async function handleSearch (event){
+    async function handleSearch(event) {
         event.preventDefault();
         toggleError(false);
 
@@ -66,25 +69,6 @@ function MtbRoutes() {
         setRouteType(event.target.value);
     };
 
-    function changeDifficultyName(difficulty) {
-        switch (difficulty) {
-            case 'EASY':
-                return 'Makkelijk';
-            case 'MODERATE':
-                return 'Gemiddeld';
-            case 'DIFFICULT':
-                return 'Moeilijk';
-        }
-    }
-
-    function changeTypeName(routeType) {
-        switch (routeType) {
-            case 'ADULT':
-                return 'Volwassene';
-            case 'CHILD':
-                return 'Kinderroute';
-        }
-    }
 
     return (
         <>
@@ -108,75 +92,88 @@ function MtbRoutes() {
                         </div>
                     </div>
                 </section>
-                <div>
-                    <div>
-                        <label htmlFor="place">Plaats:</label>
-                        <input type="text"
-                               id="place"
-                               value={place}
-                               onChange={handlePlaceChange}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="province">Provincie:</label>
-                        <select id="province" value={province} onChange={handleProvinceChange}>
-                            <option value="">Kies provincie</option>
-                            <option value="Gelderland">Gelderland</option>
-                            <option value="Utrecht">Utrecht</option>
-                            <option value="Overijssel">Overijssel</option>
-                            <option value="Flevoland">Flevoland</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label htmlFor="difficulty">Niveau:</label>
-                        <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
-                            <option value="">Kies Niveau</option>
-                            <option value="EASY">Makkelijk</option>
-                            <option value="MODERATE">Gemiddeld</option>
-                            <option value="DIFFICULT">Moeilijk</option>
 
-                        </select>
+                <div className="search-container">
+                    <form className="search-box" onSubmit={handleSearch}>
+                        <div>
+                            <label htmlFor="place">Plaats: </label>
+                            <input type="text"
+                                   id="place"
+                                   placeholder="Zoek op plaatsnaam"
+                                   value={place}
+                                   onChange={handlePlaceChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="province">Provincie: </label>
+                            <select id="province" value={province} onChange={handleProvinceChange}>
+                                <option value="">Kies provincie</option>
+                                <option value="Gelderland">Gelderland</option>
+                                <option value="Utrecht">Utrecht</option>
+                                <option value="Overijssel">Overijssel</option>
+                                <option value="Flevoland">Flevoland</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="difficulty">Niveau: </label>
+                            <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
+                                <option value="">Kies Niveau</option>
+                                <option value="EASY">Makkelijk</option>
+                                <option value="MODERATE">Gemiddeld</option>
+                                <option value="DIFFICULT">Moeilijk</option>
+
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="routeType">Type: </label>
+                            <select id="routeType" value={routeType} onChange={handleTypeChange}>
+                                <option value="">Kies Type</option>
+                                <option value="ADULT">Volwassene</option>
+                                <option value="CHILD">Kind</option>
+                            </select>
+                        </div>
+                        <button type="submit" className="search-button">Zoeken</button>
+                    </form>
+                    <div className="in-between">
+                        <p><Link className="refresh-home" to="/">Home</Link></p>
+                        <p><Link className="refresh-home" to="#" onClick={() => window.location.reload()}>Alle routes</Link></p>
+                    <p>Klik op de route-naam om naar de route te gaan.</p>
                     </div>
-                    <div>
-                        <label htmlFor="routeType">Type:</label>
-                        <select id="routeType" value={routeType} onChange={handleTypeChange}>
-                            <option value="">Kies Type</option>
-                            <option value="ADULT">Volwassene</option>
-                            <option value="CHILD">Kind</option>
-                        </select>
-                    </div>
-                    <button onClick={handleSearch}>Zoeken</button>
                     {error && <p>Kan route niet vinden.</p>}
-                    {filteredRoutes.length > 0 ? (
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Naam</th>
-                                <th>Locatie</th>
-                                <th>Provincie</th>
-                                <th>Type</th>
-                                <th>Niveau</th>
-                                <th>Afstand</th>
-                                <th>Beginpunt</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {filteredRoutes.map((route) => (
-                                <tr key={route.id}>
-                                    <td><Link to={`/mtb-routes/${route.id}`}>{route.name}</Link></td>
-                                    <td>{route.place}</td>
-                                    <td>{route.province}</td>
-                                    <td>{changeTypeName(route.routeType)}</td>
-                                    <td>{changeDifficultyName(route.difficulty)}</td>
-                                    <td>{route.distance}</td>
-                                    <td>{route.startingPoint}</td>
+                    <section className="outer-content-container search-results">
+
+                        {filteredRoutes.length > 0 ? (
+                            <table>
+                                <thead>
+                                <tr className="head-container">
+                                    <th>Naam</th>
+                                    <th>Locatie</th>
+                                    <th>Provincie</th>
+                                    <th>Type</th>
+                                    <th>Niveau</th>
+                                    <th>Afstand</th>
+                                    <th>Beginpunt</th>
                                 </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    ) : (
-                        <p>Route niet gevonden, probeer het opnieuw!</p>
-                    )}
+                                </thead>
+                                <tbody>
+                                {filteredRoutes.map((route) => (
+                                    <tr key={route.id}>
+                                        <td><Link className="mtb-route-link"
+                                                  to={`/mtb-routes/${route.id}`}>{route.name}</Link></td>
+                                        <td>{route.place}</td>
+                                        <td>{route.province}</td>
+                                        <td>{TypeName(route.routeType)}</td>
+                                        <td>{DifficultyName(route.difficulty)}</td>
+                                        <td>{route.distance}km</td>
+                                        <td>{route.startingPoint}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <p>Route niet gevonden, probeer het opnieuw!</p>
+                        )}
+                    </section>
                 </div>
             </main>
         </>
