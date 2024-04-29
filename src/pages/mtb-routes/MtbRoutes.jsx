@@ -5,6 +5,7 @@ import Header from "../../components/header/Header.jsx";
 import './MtbRoutes.css'
 import {useEffect, useState} from "react";
 import axios from 'axios';
+import {Link} from "react-router-dom";
 
 function MtbRoutes() {
     const [allRoutes, setAllRoutes] = useState([]);
@@ -16,7 +17,7 @@ function MtbRoutes() {
     const [error, toggleError] = useState(false);
 
     useEffect(() => {
-        const fetchAllRoutes = async () => {
+        async function fetchAllRoutes() {
             try {
                 const response = await axios.get('http://localhost:8080/routes/search');
                 setAllRoutes(response.data);
@@ -25,16 +26,17 @@ function MtbRoutes() {
                 console.error(err);
                 toggleError(true);
             }
-        };
+        }
         fetchAllRoutes();
     }, []);
 
-    const handleSearch = async () => {
+    async function handleSearch (event){
+        event.preventDefault();
         toggleError(false);
 
         try {
             let queryString = 'http://localhost:8080/routes/search?';
-            const params = { place, province, difficulty, routeType };
+            const params = {place, province, difficulty, routeType};
             queryString += Object.entries(params)
                 .filter(([key, value]) => value)
                 .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
@@ -46,7 +48,7 @@ function MtbRoutes() {
             console.error(err);
             toggleError(true);
         }
-    };
+    }
 
     const handlePlaceChange = (event) => {
         setPlace(event.target.value);
@@ -63,7 +65,6 @@ function MtbRoutes() {
     const handleTypeChange = (event) => {
         setRouteType(event.target.value);
     };
-
 
     function changeDifficultyName(difficulty) {
         switch (difficulty) {
@@ -110,15 +111,15 @@ function MtbRoutes() {
                 <div>
                     <div>
                         <label htmlFor="place">Plaats:</label>
-                            <input type="text"
-                                   id="place"
-                                   value={place}
-                                   onChange={handlePlaceChange}
-                            />
+                        <input type="text"
+                               id="place"
+                               value={place}
+                               onChange={handlePlaceChange}
+                        />
                     </div>
                     <div>
                         <label htmlFor="province">Provincie:</label>
-                        <select id="province"  value={province} onChange={handleProvinceChange}>
+                        <select id="province" value={province} onChange={handleProvinceChange}>
                             <option value="">Kies provincie</option>
                             <option value="Gelderland">Gelderland</option>
                             <option value="Utrecht">Utrecht</option>
@@ -146,24 +147,36 @@ function MtbRoutes() {
                     </div>
                     <button onClick={handleSearch}>Zoeken</button>
                     {error && <p>Kan route niet vinden.</p>}
-                    {filteredRoutes.length > 0 ?(
-                    <ul>
-                        {filteredRoutes.map((route)=>(
-                        <li
-                            key={route.id}>
-                                <h3>{route.name}</h3>
-                                <p>Locatie: {route.place}</p>
-                                <p>Provincie: {route.province}</p>
-                                <p>Type: {changeTypeName(route.routeType)}</p>
-                                <p>Niveau: {changeDifficultyName(route.difficulty)}</p>
-                                <p>Afstand: {route.distance}km</p>
-                                <p>Beginpunt: {route.startingPoint}</p>
-                            </li>
-                        ))}
-                    </ul>
-                        ):(
-                            <p>Route niet gevonden, probeer het opnieuw!</p>
-                        )}
+                    {filteredRoutes.length > 0 ? (
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Naam</th>
+                                <th>Locatie</th>
+                                <th>Provincie</th>
+                                <th>Type</th>
+                                <th>Niveau</th>
+                                <th>Afstand</th>
+                                <th>Beginpunt</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {filteredRoutes.map((route) => (
+                                <tr key={route.id}>
+                                    <td><Link to={`/mtb-routes/${route.id}`}>{route.name}</Link></td>
+                                    <td>{route.place}</td>
+                                    <td>{route.province}</td>
+                                    <td>{changeTypeName(route.routeType)}</td>
+                                    <td>{changeDifficultyName(route.difficulty)}</td>
+                                    <td>{route.distance}</td>
+                                    <td>{route.startingPoint}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p>Route niet gevonden, probeer het opnieuw!</p>
+                    )}
                 </div>
             </main>
         </>
