@@ -1,6 +1,7 @@
 import axios from "axios";
+import "./RouteDetails.css"
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import Header from "../../components/header/Header.jsx";
 import routeMtb from '../../assets/header-mtb-route.jpeg';
 import DifficultyName from "../../helpers/changeDifficultyName.jsx";
@@ -12,6 +13,7 @@ function RouteDetails() {
     const {id} = useParams();
     const [image, setImage] = useState(null);
     const [error, toggleError] = useState(false);
+    const [enlarged, setEnlarged] = useState(false);
 
 
     useEffect(() => {
@@ -52,31 +54,47 @@ function RouteDetails() {
         };
     }, [id]);
 
+    const toggleEnlarged = () => {
+        setEnlarged(!enlarged);
+    };
+
 
     return (
 
         <main>
 
             {route ? (
-                <section>
+                <div>
                     <Header img={routeMtb} img_title={route.name} title={route.name}/>
-                    <h2>{route.name}</h2>
-                    <div>
-                    <p>Provincie: {route.province}</p>
-                    <p>Afstand: {route.distance}km</p>
-                    <p>Type: {TypeName(route.routeType)}</p>
-                    <p>Niveau: {DifficultyName(route.difficulty)}</p>
-                    </div>
+                    <section className="route-details-container">
+                        <div className="inner-content-container">
+                            <h3>{route.name}</h3>
+                            <div className="details-information">
+                                <p>Plaats: {route.place}</p>
+                                <p>Provincie: {route.province}</p>
+                                <p>Afstand: {route.distance}km</p>
+                                <p>Type: {TypeName(route.routeType)}</p>
+                                <p>Niveau: {DifficultyName(route.difficulty)}</p>
+                            </div>
+                            {image && <img
+                                className={`route-image ${enlarged ? 'enlarged' : ''}`}
+                                src={image}
+                                alt='Route image'
+                                onClick={toggleEnlarged}
+                            />}
+                            <div className="route-information">
+                                <h4>Startlocatie</h4>
+                                <p>Je kunt de route starten bij: </p>
 
-                    {image && <img src={image} alt='Route image'/>}
-                    <div>
-                    <h4>Startlocatie</h4>
-                    <p>Je kunt de route starten bij: </p>
-                    <li>{route.startingPoint}</li>
-                    <h3>Route Informatie</h3>
-                    <p>{route.routeInformation}</p>
-                    </div>
-                </section>
+                                <li className="starting-point">{route.startingPoint}</li>
+
+                                <h3>Route Informatie</h3>
+                                <p>{route.routeInformation}</p>
+                            </div>
+                            <p><Link className="back-to-routes" to="/mtb-routes">Terug naar alle routes</Link></p>
+                        </div>
+                    </section>
+                </div>
             ) : (
                 <p>{error} Route aan het laden....</p>
             )}
