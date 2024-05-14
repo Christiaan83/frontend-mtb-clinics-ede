@@ -5,6 +5,8 @@ import axios from "axios";
 import {Helmet} from "react-helmet";
 import Header from "../../components/header/Header.jsx";
 import mtbRental from "../../assets/verhuur2.jpg";
+import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
+import {Link} from "react-router-dom";
 
 function RentalPage() {
     const [error, toggleError] = useState(false);
@@ -27,7 +29,6 @@ function RentalPage() {
                 toggleError(true);
             }
         }
-
         fetchAllMountainbikes();
     }, []);
 
@@ -67,6 +68,7 @@ function RentalPage() {
                 console.error("Kan afbeelding niet ophalen", {error});
             }
         }
+
         mountainbikes.forEach(mtb => {
             fetchMtbPicture(mtb.id);
         });
@@ -135,18 +137,20 @@ function RentalPage() {
                 <section className="outer-content">
 
                     {search.length > 0 ? (<div>
-                            {search.map((mtb) => <ul key={mtb.id}>
-                                <li>
-                                    <h2>{mtb.name}</h2>
-                                    {imageUrls[mtb.id] && <img src={imageUrls[mtb.id]} alt={mtb.name}/>}
-                                    <p>Wielgrootte: {mtb.wheelSize}</p>
-                                    <p>Frame maat: {mtb.frameSize}</p>
-                                    <p>Versnellingen: {mtb.gears}</p>
-                                    <p>Prijs per dag: € {mtb.pricePerDayPart},-</p>
-                                    <p>Type: {adultOrChild(mtb.forAdult)}</p>
-                                </li>
-                            </ul>)}
-                        </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
+                        {search.map((mtb) => <ul key={mtb.id}>
+                            <li>
+                                <h2>{mtb.name}</h2>
+                                {imageUrls[mtb.id] && <img src={imageUrls[mtb.id]} alt={mtb.name}/>}
+                                <p>Wielgrootte: {mtb.wheelSize}</p>
+                                <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
+                                <p>Versnellingen: {mtb.gears}</p>
+                                <p>Prijs per dag: € {mtb.pricePerDayPart},-</p>
+                                <p>Type: {adultOrChild(mtb.forAdult)}</p>
+                                <button type="submit"><Link to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
+                                </button>
+                            </li>
+                        </ul>)}
+                    </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
                 </section>
             </main>
         </>
