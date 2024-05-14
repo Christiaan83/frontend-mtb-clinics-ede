@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer.jsx";
 import MtbRoutes from "./pages/mtbRoutes/MtbRoutes.jsx";
 import RouteDetails from "./pages/routeDetails/RouteDetails.jsx";
 import RentalPage from "./pages/mtbRentalPage/RentalPage.jsx"
+import BookRentalPage from "./pages/bookRentalPage/BookRentalPage.jsx";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path="/mtb-routes" element={<MtbRoutes/>} />
             <Route path="/mtb-routes/:id" element={<RouteDetails/>} />
             <Route path="/mtb-verhuur" element={<RentalPage/>}/>
+            <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
         </Routes>
         <Footer/>
     </>
