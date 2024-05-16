@@ -6,14 +6,14 @@ import Header from "../../components/header/Header.jsx";
 import routeMtb from '../../assets/header-mtb-route.jpeg';
 import DifficultyName from "../../helpers/changeDifficultyName.jsx";
 import TypeName from "../../helpers/changeTypeName.jsx";
+import RouteMap from "../../components/pictures/RouteMap.jsx";
 
 function RouteDetails() {
 
     const [route, setRoute] = useState(null);
     const {id} = useParams();
-    const [image, setImage] = useState(null);
     const [error, toggleError] = useState(false);
-    const [enlarged, setEnlarged] = useState(false);
+
 
 
     useEffect(() => {
@@ -33,31 +33,6 @@ function RouteDetails() {
         getRouteDetails();
     }, [id]);
 
-    useEffect(() => {
-        async function fetchRoutePicture() {
-            try {
-                const response = await axios.get(`http://localhost:8080/routes/${id}/picture`, {
-                    responseType: 'blob',
-                });
-                const imageUrl = URL.createObjectURL(response.data);
-                setImage(imageUrl);
-            } catch (err) {
-                console.error("Kan afbeelding niet ophalen", err);
-            }
-        }
-
-        fetchRoutePicture();
-        return () => {
-            if (image) {
-                URL.revokeObjectURL(image);
-            }
-        };
-    }, [id]);
-
-    const toggleEnlarged = () => {
-        setEnlarged(!enlarged);
-    };
-
 
     return (
 
@@ -76,11 +51,7 @@ function RouteDetails() {
                                 <p>Type: {TypeName(route.routeType)}</p>
                                 <p>Niveau: {DifficultyName(route.difficulty)}</p>
                             </div>
-                            {image && <img
-                                className={`route-image ${enlarged ? 'enlarged' : ''}`}
-                                src={image}
-                                alt='Route image'
-                                onClick={toggleEnlarged}
+                            {<RouteMap routeId={route.id}
                             />}
                             <div className="route-information">
                                 <h4>Startlocatie</h4>
