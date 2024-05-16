@@ -7,6 +7,7 @@ import Header from "../../components/header/Header.jsx";
 import mtbRental from "../../assets/verhuur2.jpg";
 import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import {Link} from "react-router-dom";
+import MtbPicture from "../../components/pictures/MtbPicture.jsx"
 
 function RentalPage() {
     const [error, toggleError] = useState(false);
@@ -15,7 +16,6 @@ function RentalPage() {
     const [fullSuspension, setFullSuspension] = useState('');
     const [size, setSize] = useState('');
     const [search, setSearch] = useState([]);
-    const [imageUrls, setImageUrls] = useState({});
 
 
     useEffect(() => {
@@ -53,30 +53,6 @@ function RentalPage() {
             toggleError(true);
         }
     }
-
-    useEffect(() => {
-        async function fetchMtbPicture(id) {
-            try {
-                const response = await axios.get(`http://localhost:8080/mountainbikes/${id}/picture`, {
-                    responseType: 'blob',
-                });
-                const imageUrl = URL.createObjectURL(response.data);
-                setImageUrls(prevState => ({
-                    ...prevState, [id]: imageUrl
-                }));
-            } catch (err) {
-                console.error("Kan afbeelding niet ophalen", {error});
-            }
-        }
-
-        mountainbikes.forEach(mtb => {
-            fetchMtbPicture(mtb.id);
-        });
-
-        return () => {
-            Object.values(imageUrls).forEach(URL.revokeObjectURL);
-        };
-    }, [mountainbikes]);
 
     const handleSizeChange = (event) => {
         setSize(event.target.value);
@@ -135,12 +111,11 @@ function RentalPage() {
                 </form>
                 {error && <p>Error fetching mountain bikes</p>}
                 <section className="outer-content">
-
                     {search.length > 0 ? (<div>
                         {search.map((mtb) => <ul key={mtb.id}>
                             <li>
                                 <h2>{mtb.name}</h2>
-                                {imageUrls[mtb.id] && <img src={imageUrls[mtb.id]} alt={mtb.name}/>}
+                                <MtbPicture mountainbike={mtb} />
                                 <p>Wielgrootte: {mtb.wheelSize}</p>
                                 <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
                                 <p>Versnellingen: {mtb.gears}</p>
