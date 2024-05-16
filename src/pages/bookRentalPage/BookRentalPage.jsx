@@ -3,20 +3,22 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import mtbRental from "../../assets/verhuur2.jpg";
 import Header from "../../components/header/Header.jsx";
+import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
+import adultOrChild from "../../helpers/mountianbikes/adultOrChild.jsx";
+import MtbPicture from "../../components/pictures/MtbPicture.jsx";
+import RegisterUserForm from "../../components/usersAndRentals/addUser.jsx";
+import RentalForm from "../../components/usersAndRentals/RentalForm.jsx";
 
 function BookRentalPage() {
 
     const [mountainbike, setMountainbike] = useState(null);
-    const{id} = useParams();
+    const {id} = useParams();
     const [error, toggleError] = useState(null);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [mobileNumber, setMobileNumber] = useState("");
+    const [rentalId, setRentalId] = useState(null);
 
 
     useEffect(() => {
-        toggleError(true);
+        toggleError(null);
 
         async function getMtbDetails() {
             try {
@@ -32,70 +34,31 @@ function BookRentalPage() {
         getMtbDetails();
     }, [id]);
 
-    async function handleUser(e) {
-        e.preventDefault();
-        toggleError(false);
+    const handleRentalCreated = (rentalId) => {
+        setRentalId(rentalId);
+    };
 
-        try{
-            await axios.post(`http://localhost:8080/unregistered-users`, {
-                firstName,
-                lastName,
-                email,
-                mobileNumber,
-            });
-        }catch(err){
-            console.error(err);
-        }
-    }
-
-    // async function handleRental(e) {
-    //     e.preventDefault();
-    //     toggleError(false)
-    // }
 
     return(
         <main>
             {mountainbike ? (
-            <div>
-                <Header img={mtbRental} img_title="bike-wheel" title="MTB-Verhuur"/>
-                <section>
-                    <label htmlFor="firstname">Voornaam</label>
-                    <input
-                        id="firstname"
-                        onChange={(e) => setFirstName(e.target.value)}
-                        type="text"
-                        placeholder="Voornaam"
-                        required
-                    />
-                    <label htmlFor="lastName">Achternaam</label>
-                    <input
-                        id="lastName"
-                        onChange={(e) => setLastName(e.target.value)}
-                        type="text"
-                        placeholder="Achternaam"
-                        required
-                    />
-                    <label htmlFor="email">Email</label>
-                    <input
-                        id="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        type="email"
-                        placeholder="naam@email.com"
-                        required
-                    />
-                    <label htmlFor="mobileNumber">Mobiele nummer</label>
-                    <input
-                        id="mobileNumber"
-                        onChange={(e) => setMobileNumber(e.target.value)}
-                        type="tel"
-                        placeholder="0612345678"
-                        required
-                    />
-                    <div>
-                        <button onClick={handleUser}>Toevoegen</button>
-                    </div>
-                </section>
-            </div>
+                <div>
+                    <Header img={mtbRental} img_title="bike-wheel" title="MTB-Verhuur"/>
+                    <section>
+                        <h2>{mountainbike.name}</h2>
+                        <MtbPicture mountainbike={mountainbike}/>
+                        <p>Wielgrootte: {mountainbike.wheelSize}</p>
+                        <p>Frame maat: {frameSizeDutch(mountainbike.frameSize)}</p>
+                        <p>Versnellingen: {mountainbike.gears}</p>
+                        <p>Prijs per dag: € {mountainbike.pricePerDayPart},-</p>
+                        <p>Type: {adultOrChild(mountainbike.forAdult)}</p>
+                    </section>
+                    <section>
+                        <RegisterUserForm />
+                        <RentalForm />
+                    </section>
+
+                </div>
             ) : (
                 <p>{error}</p>
             )}
