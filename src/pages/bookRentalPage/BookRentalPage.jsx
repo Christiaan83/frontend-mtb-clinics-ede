@@ -6,7 +6,7 @@ import Header from "../../components/header/Header.jsx";
 import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import adultOrChild from "../../helpers/mountianbikes/adultOrChild.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
-import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import HandleDateChange from "../../components/handleDateChange.jsx";
 import {generateTimeOptions} from "../../helpers/timeOptions.jsx";
 
 
