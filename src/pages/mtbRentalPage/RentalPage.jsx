@@ -11,7 +11,7 @@ import MtbPicture from "../../components/pictures/MtbPicture.jsx"
 
 function RentalPage() {
     const [error, toggleError] = useState(false);
-    const [mountainbikes, setMountainbikes] = useState([]);
+    const [, setMountainbikes] = useState([]);
     const [forAdult, setForAdult] = useState('');
     const [fullSuspension, setFullSuspension] = useState('');
     const [size, setSize] = useState('');
@@ -40,7 +40,7 @@ function RentalPage() {
             const params = {size, forAdult, fullSuspension};
 
             queryString += Object.entries(params)
-                .filter(([key, value]) => value)
+                .filter(([, value]) => value)
                 .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
                 .join('&');
 
@@ -72,8 +72,9 @@ function RentalPage() {
                     <title>MTB Clinics-Ede | Verhuur</title>
                 </Helmet>
             </div>
-            <main>
-                <Header img={mtbRental} img_title="bike-wheel" title="MTB-Verhuur"/>
+            <Header img={mtbRental} img_title="bike-wheel" title="MTB-Verhuur"/>
+            <main className="outer-content-container">
+                <div>
                 <form onSubmit={handleSearch}>
                     <div>
                         <label>
@@ -115,18 +116,21 @@ function RentalPage() {
                         {search.map((mtb) => <ul key={mtb.id}>
                             <li>
                                 <h2>{mtb.name}</h2>
-                                <MtbPicture mountainbike={mtb} />
+                                <MtbPicture mountainbike={mtb}/>
                                 <p>Wielgrootte: {mtb.wheelSize}</p>
                                 <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
                                 <p>Versnellingen: {mtb.gears}</p>
-                                <p>Prijs per dag: € {mtb.pricePerDayPart},-</p>
+                                <p>Volledig geveerd: {mtb.fullSuspension ? 'Ja' : 'Nee'}</p>
                                 <p>Type: {adultOrChild(mtb.forAdult)}</p>
+                                <p>Prijs hele dag: € {mtb.pricePerDayPart},-</p>
+                                <p>Prijs per dagdeel (4 uur of minder):  € {mtb.pricePerDayPart -10},-</p>
                                 <button type="submit"><Link to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
                                 </button>
                             </li>
                         </ul>)}
                     </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
                 </section>
+                </div>
             </main>
         </>
 
