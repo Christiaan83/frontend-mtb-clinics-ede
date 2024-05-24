@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../../pages/mtbRentalPage/RentalPage.css'
 
 
 // eslint-disable-next-line react/prop-types
