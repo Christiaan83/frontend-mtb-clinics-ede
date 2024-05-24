@@ -8,6 +8,8 @@ import mtbRental from "../../assets/verhuur2.jpg";
 import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import {Link} from "react-router-dom";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx"
+import rentalInfo from "../../assets/verhuurInfo.jpg";
+
 
 function RentalPage() {
     const [error, toggleError] = useState(false);
@@ -29,6 +31,7 @@ function RentalPage() {
                 toggleError(true);
             }
         }
+
         fetchAllMountainbikes();
     }, []);
 
@@ -73,64 +76,87 @@ function RentalPage() {
                 </Helmet>
             </div>
             <Header img={mtbRental} img_title="bike-wheel" title="MTB-Verhuur"/>
-            <main className="outer-content-container">
-                <div>
-                <form onSubmit={handleSearch}>
-                    <div>
-                        <label>
-                            Type:
-                            <select value={forAdult.toString()} onChange={handleForAdultChange}>
-                                <option value="">Alle</option>
-                                <option value="true">Volwassenen</option>
-                                <option value="false">Kinder Mountainbikes</option>
-                            </select>
-                        </label>
+            <main>
+            <section className="outer-content-container">
+                <div className="inner-content-container">
+
+                        <h2>Mountainbiken over de mooiste routes van Nederland!</h2>
+                    <div className="search-info-container">
+                        <img className="rental-info-img" src={rentalInfo} alt="Verhuur-info"/>
+                        <p>
+                            Geen beschikking over een eigen mountainbike? Zin in een sportief uitje en actieve middag?
+                            Huur direct via onze site: We beschikken over 29’-inch mountainbikes in diverse framematen
+                            (met voorvering of volledig geveerd)
+                            en kindermountainbikes 24′-inch. Alle mountainbikes zijn uitgerust met combipedalen (zowel
+                            platform- als klikpedalen). De huur is inclusief helm. Onze mountainbikes worden zorgvuldig
+                            onderhouden. Mocht je met pech stranden dan zorgen wij voor een vervangende mtb.
+                            <br/>
+                            <br/>
+                            Kies of zoek hieronder de juiste mountainbike om te huren.
+                        </p>
                     </div>
-                    <div>
-                        <label>
-                            Size:
-                            <select value={size} onChange={handleSizeChange}>
-                                <option value=""> Alle</option>
-                                <option value="small"> Klein</option>
-                                <option value="medium"> Medium</option>
-                                <option value="large"> Groot</option>
-                                <option value="extra-large"> Extra groot</option>
-                            </select>
-                        </label>
-                        <label>
-                            Vering:
-                            <select value={fullSuspension} onChange={handleFullSuspensionChange}>
-                                <option value="">Alle</option>
-                                <option value="true">Volledig geveerd</option>
-                                <option value="false">Voorvering</option>
-                            </select>
-                        </label>
-                        <div>
-                            <button type="submit">Zoeken</button>
-                        </div>
-                    </div>
-                </form>
-                {error && <p>Error fetching mountain bikes</p>}
-                <section className="outer-content">
-                    {search.length > 0 ? (<div>
-                        {search.map((mtb) => <ul key={mtb.id}>
-                            <li>
-                                <h2>{mtb.name}</h2>
-                                <MtbPicture mountainbike={mtb}/>
-                                <p>Wielgrootte: {mtb.wheelSize}</p>
-                                <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
-                                <p>Versnellingen: {mtb.gears}</p>
-                                <p>Volledig geveerd: {mtb.fullSuspension ? 'Ja' : 'Nee'}</p>
-                                <p>Type: {adultOrChild(mtb.forAdult)}</p>
-                                <p>Prijs hele dag: € {mtb.pricePerDayPart},-</p>
-                                <p>Prijs per dagdeel (4 uur of minder):  € {mtb.pricePerDayPart -10},-</p>
-                                <button type="submit"><Link to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
-                                </button>
-                            </li>
-                        </ul>)}
-                    </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
-                </section>
                 </div>
+            </section>
+
+                <div className="search-container">
+                    <form className="search-box" onSubmit={handleSearch}>
+                        <div>
+                            <label htmlFor="type">Type: </label>
+                                <select value={forAdult.toString()} onChange={handleForAdultChange}>
+                                    <option value="">Alle</option>
+                                    <option value="true">Volwassenen</option>
+                                    <option value="false">Kinder Mountainbikes</option>
+                                </select>
+                        </div>
+                        <div>
+                            <label htmlFor="size"> Grootte: </label>
+                                <select value={size} onChange={handleSizeChange}>
+                                    <option value=""> Alle</option>
+                                    <option value="small"> Klein</option>
+                                    <option value="medium"> Medium</option>
+                                    <option value="large"> Groot</option>
+                                    <option value="extra-large"> Extra groot</option>
+                                </select>
+                        </div>
+                        <div>
+                            <label htmlFor="fullSuspension"> Vering: </label>
+                                <select value={fullSuspension} onChange={handleFullSuspensionChange}>
+                                    <option value="">Alle</option>
+                                    <option value="true">Volledig geveerd</option>
+                                    <option value="false">Voorvering</option>
+                                </select>
+                        </div>
+                                <button type="submit" className="search-button">Zoeken</button>
+                    </form>
+                    </div>
+                    {error && <p>Error fetching mountain bikes</p>}
+                    <section className="rental-blocks-section">
+                        {search.length > 0 ? (
+                            <div className='rental-blocks'>
+                            {search.map((mtb) =>
+                                <ul className='rental-blocks-info' key={mtb.id}>
+                                <li>
+                                    <h2>{mtb.name}</h2>
+                                    <div className="mtb-rental-img" >
+                                    <MtbPicture mountainbike={mtb}/>
+                                    </div>
+                                    <br/>
+                                    <p>Wielgrootte: {mtb.wheelSize}</p>
+                                    <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
+                                    <p>Versnellingen: {mtb.gears}</p>
+                                    <p>Volledig geveerd: {mtb.fullSuspension ? 'Ja' : 'Nee'}</p>
+                                    <p>Type: {adultOrChild(mtb.forAdult)}</p>
+                                    <p>Prijs hele dag: € {mtb.pricePerDayPart},-</p>
+                                    <p>Prijs per dagdeel (4 uur of minder): € {mtb.pricePerDayPart - 10},-</p>
+                                    <br/>
+                                    <div>
+                                    <button type="submit"><Link to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
+                                    </button>
+                                    </div>
+                                </li>
+                            </ul>)}
+                        </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
+                    </section>
             </main>
         </>
 
