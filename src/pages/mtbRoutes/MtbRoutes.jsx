@@ -10,7 +10,7 @@ import axios from 'axios';
 import {Link} from "react-router-dom";
 
 function MtbRoutes() {
-    const [allRoutes, setAllRoutes] = useState([]);
+    const [, setAllRoutes] = useState([]);
     const [filteredRoutes, setFilteredRoutes] = useState([]);
     const [place, setPlace] = useState('');
     const [province, setProvince] = useState('');
@@ -41,7 +41,7 @@ function MtbRoutes() {
             let queryString = 'http://localhost:8080/routes/search?';
             const params = {place, province, difficulty, routeType};
             queryString += Object.entries(params)
-                .filter(([key, value]) => value)
+                .filter(([, value]) => value)
                 .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
                 .join('&');
 
@@ -77,8 +77,8 @@ function MtbRoutes() {
                     <title>MTB Clinics-Ede | Routes</title>
                 </Helmet>
             </div>
+            <Header img={mtbRoute} img_title="bike-wheel" title="MTB-Routes"/>
             <main>
-                <Header img={mtbRoute} img_title="bike-wheel" title="MTB-Routes"/>
                 <section className="outer-content-container">
                     <div className="inner-content-container ">
                         <h2>Zoek de route die bij je past!</h2>
@@ -87,8 +87,7 @@ function MtbRoutes() {
                             <p>Kom crossen over singletracks door bossen en heidevelden, tackle een uitdagende MTB-route
                                 of geniet van één van de mooiste MTB-routes van Nederland! Ben je op zoek naar een
                                 MTB-route voor beginners of ben je juist toe aan een uitdagende track? Kies hier de
-                                route die
-                                het beste bij je past.</p>
+                                route die het beste bij je past.</p>
                         </div>
                     </div>
                 </section>

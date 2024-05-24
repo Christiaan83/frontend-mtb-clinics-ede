@@ -17,6 +17,7 @@ h2{
     height: auto;
     width: 200px;
 }
+
 .blocks-section{
     text-align: center;
 }
@@ -43,7 +44,6 @@ h2{
     margin: 20px;
     box-shadow: 4px 5px 8px 2px rgba(0,0,0,0.3);
 }
-
 .block-text{
     color: var(--color-black);
 }
