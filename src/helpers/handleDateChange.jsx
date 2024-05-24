@@ -31,8 +31,8 @@ const HandleDateChange = ({onDateChange}) => {
     };
 
     return (
-        <div>
-            <label htmlFor="startDate">Gewenste datum: </label>
+        <>
+            <label htmlFor="startDate">Gewenste datum:&nbsp;
             <input
                 type="date"
                 id="startDate"
@@ -40,8 +40,9 @@ const HandleDateChange = ({onDateChange}) => {
                 onChange={handleDateSelection}
                 required
             />
+            </label>
             {error && <p className="error-message">{error}</p>}
-        </div>
+        </>
     );
 };
 
