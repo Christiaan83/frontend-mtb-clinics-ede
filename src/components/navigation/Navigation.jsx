@@ -17,7 +17,7 @@ function Navigation() {
 
                 <ul>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to="/clinics">Clinics</NavLink></li>
+                                 to="/mtb-clinics">MTB-clinics</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                                  to="/mtb-routes">MTB-routes</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
