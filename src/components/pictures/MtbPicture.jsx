@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../pages/mtbRentalPage/RentalPage.css'
+import '../../pages/mtbRental/RentalPage.css'
 
 
 // eslint-disable-next-line react/prop-types
@@ -10,6 +10,7 @@ const MtbPicture = ({ mountainbike }) => {
     useEffect(() => {
         const fetchMtbPicture = async () => {
             try {
+                // eslint-disable-next-line react/prop-types
                 const response = await axios.get(`http://localhost:8080/mountainbikes/${mountainbike.id}/picture`, {
                     responseType: 'blob',
                 });
