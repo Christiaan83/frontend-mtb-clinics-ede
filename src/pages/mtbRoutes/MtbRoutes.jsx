@@ -131,7 +131,7 @@ function MtbRoutes() {
                                 <option value="CHILD">Kind</option>
                             </select>
                         </div>
-                        <button type="submit" className="search-button">Zoeken</button>
+                        <button type="submit" className="button">Zoeken</button>
                     </form>
                     <div className="in-between">
                         <p><Link className="refresh-home" to="/">Home</Link></p>

@@ -9,6 +9,7 @@ import MtbPicture from "../../components/pictures/MtbPicture.jsx";
 import HandleDateChange from "../../helpers/handleDateChange.jsx";
 import {generateTimeOptions} from "../../helpers/timeOptions.jsx";
 import InputMask from 'react-input-mask';
+import {formatTime} from "../../helpers/formatTime.jsx";
 
 
 function BookRentalPage() {
@@ -203,7 +204,7 @@ function BookRentalPage() {
                                 <option value="20:00">20:00</option>
                             </select>
                             </label>
-                            <button className="booking-button" onClick={handleRentalAndUserCreation}>Boeken</button>
+                            <button className="button" onClick={handleRentalAndUserCreation}>Boeken</button>
                             </div>
                         </form>
                     </div>
@@ -221,7 +222,7 @@ function BookRentalPage() {
                         <div>
                         <h4>Datum en tijd</h4>
                     <p>Datum: {new Date(rentalDetails.startDate).toLocaleDateString('nl-NL')}</p>
-            <p>Tijd: {rentalDetails.startTime.slice(0, 5)} - {rentalDetails.endTime.slice(0, 5)}</p>
+            <p>Tijd: {formatTime(rentalDetails.startTime)} - {formatTime(rentalDetails.endTime)}</p>
                         </div>
                         <div>
                             <h4>Mountainbike</h4>
@@ -242,8 +243,8 @@ function BookRentalPage() {
                         </div>
                     </section>
                     <div className="back-to-links">
-                        <Link className="link-to" to="/">Terug naar Home</Link>
-                        <Link className="link-to" to="/mtb-verhuur">Terug naar MTB-Verhuur</Link>
+                        <Link className="link" to="/">Terug naar Home</Link>
+                        <Link className="link" to="/mtb-verhuur">Terug naar MTB-Verhuur</Link>
                     </div>
                     </div>
                 )}

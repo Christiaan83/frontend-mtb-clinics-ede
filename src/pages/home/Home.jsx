@@ -55,14 +55,14 @@ function Home() {
                         </section>
                     </div>
                 </section>
-                <section className="blocks-section">
+                <section className="home-blocks-section">
                     <h2>Onze aangeboden opties</h2>
-                    <ul className='info-blocks'>
+                    <ul className='home-info-blocks'>
                         <li className='info-items'>
                             <Link to="/clinics">
-                                <h4 className='block-text'>MTB-Clinics</h4>
+                                <h4 className='home-block-text'>MTB-Clinics</h4>
                                 <img src={clinics} alt="clinics"/>
-                                <p className='block-text paragraph-text'> Met de juiste techniek kun jij iedere
+                                <p className='home-block-text paragraph-text'> Met de juiste techniek kun jij iedere
                                     uitdaging aan en zit je zelfverzekerd op de mountainbike. Of het nu gaat om het
                                     leren van goede basistechniek of specifieke skills, na een MTB Clinic zit je beter
                                     op de fiets. De lessen worden worden op verschillend niveaus gegeven en worden
@@ -71,9 +71,9 @@ function Home() {
                         </li>
                         <li className='info-items'>
                             <Link to="/mtb-routes">
-                                <h4 className='block-text'>MTB-Routes</h4>
+                                <h4 className='home-block-text'>MTB-Routes</h4>
                                 <img src={route} alt="mtb-routes"/>
-                                <p className='block-text paragraph-text'>Ondanks dat Nederland geen echte bergen kent,
+                                <p className='home-block-text paragraph-text'>Ondanks dat Nederland geen echte bergen kent,
                                     is het mountainbiken er zeer populair en zijn er meer dan 100 verschillende routes
                                     over het gehele land te vinden. Het onderscheid tussen deze routes is groot. Zo kan
                                     je door de duinen ploeteren in Noord-Holland, genieten van de bossen in Drenthe en
@@ -82,9 +82,9 @@ function Home() {
                         </li>
                         <li className='info-items'>
                             <Link to="/mtb-verhuur">
-                                <h4 className='block-text'>MTB-Verhuur</h4>
+                                <h4 className='home-block-text'>MTB-Verhuur</h4>
                                 <img src={rental} alt="mtb-rental"/>
-                                <p className='block-text paragraph-text'>Hardtail en full suspension mountainbikes zijn
+                                <p className='home-block-text paragraph-text'>Hardtail en full suspension mountainbikes zijn
                                     in alle maten te huur. Huur is inclusief een grote bidon en een helm naar keuze uit
                                     5 verschillende maten.
                                     Je krijgt een fiets die bij je lichaamslengte past. De mountainbikes zijn uitgerust
