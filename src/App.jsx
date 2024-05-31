@@ -10,9 +10,14 @@ import RentalPage from "./pages/mtbRental/RentalPage.jsx"
 import BookRentalPage from "./pages/bookRental/BookRentalPage.jsx";
 import MtbClinics from "./pages/mtbClinics/MtbClinics.jsx";
 import BookClinicPage from "./pages/BookClinic/BookClinicPage.jsx";
+import {AuthContext} from "./context/AuthContext.jsx";
+import {useContext} from "react";
+import SignIn from "./pages/SignIn.jsx";
 
 
 function App() {
+
+    const { isAuth } = useContext(AuthContext);
 
   return (
     <>
@@ -25,6 +30,7 @@ function App() {
             <Route path="/mtb-routes/:id" element={<RouteDetails/>} />
             <Route path="/mtb-verhuur" element={<RentalPage/>}/>
             <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
+            <Route path="/inloggen" element={<SignIn />}/>
         </Routes>
         <Footer/>
     </>
