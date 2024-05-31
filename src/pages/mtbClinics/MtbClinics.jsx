@@ -48,7 +48,7 @@ return (
 
                            Een mountainbike clinic volgen bij <strong>MTB Clinics-Ede</strong> betekent werken aan jouw mountainbike skills. Met krachtige benen kom je ver, maar nog veel belangrijker is jouw techniek, controle en balans. Mountainbiken is iets heel anders dan fietsen op de stads- of racefiets.
 
-                           Vooral de basis van het mountainbiken is erg belangrijk. Hierin schuilen de geheimen van volledige controle en controle geeft vertrouwen. Hoe hoger het niveau, hoe meer details er belangrijk zijn. Dit zijn kleine verschillen die je zelf vaak niet kunt zien. In onze mountainbike clinics geven wij je tips en tricks om één te zijn met jouw mountainbike en te kunnen mountainbiken in ieder terrein. Je krijgt van ons gerichte aanwijzingen, nuttige feedback en veel persoonlijke aandacht. Ben je op zoek naar een MTB clinic voor beginners, gezinnen of als gevorderde? Wij bieden mountainbike clinics aan op meerdere niveaus, zodat jij er het meeste uit kunt halen.
+                           Vooral de basis van het mountainbiken is erg belangrijk. Hierin schuilen de geheimen van volledige controle en controle geeft vertrouwen. Hoe hoger het niveau, hoe meer details er belangrijk zijn. Dit zijn kleine verschillen die je zelf vaak niet kunt zien. In onze mountainbike clinics geven wij je tips en tricks om één te zijn met jouw mountainbike en te kunnen mountainbiken in ieder terrein. Je krijgt van ons gerichte aanwijzingen, nuttige feedback en veel persoonlijke aandacht. Ben je op zoek naar een MTB clinic voor beginners, gezinnen of als gevorderde? Wij bieden mountainbike clinics aan op meerdere niveaus, zodat jij het meeste er uit kunt halen.
                         </p>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ return (
                                 <p> {clinics.description}</p>
                                 <br/>
                                 <p>Moeilijkheidsgraad: {difficultyName(clinics.difficulty)}</p>
-                                <p>Prijs: € {clinics.price.toFixed(2)},- per persoon</p>
+                                <p>Prijs: € {clinics.price.toFixed(2)} {clinics.trainingInGroup ? ' per persoon' : '' }</p>
                                 <p>Begin tijd: {formatTime(clinics.startTime)}</p>
                                 <p>Eindtijd: {formatTime(clinics.endTime)}</p>
                                 <p>Locatie:&nbsp;
@@ -81,7 +81,9 @@ return (
                             <button className="button" type="submit"><Link to={`/mtb-clinics/${clinics.id}`}>Boek
                                 deze clinic</Link>
                             </button>
-                        </ul>)}
+                        </ul>)
+                    }
+                    {error && <p className="error-message">Er is iets fout gegaan probeer opnieuw!</p>}
                 </div>
             </section>
         </main>

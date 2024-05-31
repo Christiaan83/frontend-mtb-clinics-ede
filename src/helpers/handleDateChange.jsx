@@ -16,12 +16,14 @@ const HandleDateChange = ({onDateChange}) => {
         const oneYearFromNow = new Date();
         oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
 
+        const currentDate = new Date();
         const dayOfWeek = dateObject.getDay();
         const isValidDay = dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0;
-        const isFutureNextYear = dateObject <= oneYearFromNow;
+        const isFutureNextYear = dateObject> currentDate && dateObject <= oneYearFromNow;
+        const futureDate = oneYearFromNow.toLocaleDateString('nl-NL');
 
         if (!isFutureNextYear || !isValidDay) {
-            setError('Je kunt alleen een datum kiezen in de toekomst op de vrijdag, zaterdag of zondag.');
+            setError(`Kies een datum in de toekomst op vrijdag, zaterdag of zondag, tot ${futureDate}`);
             return;
         }
 
