@@ -1,9 +1,12 @@
-import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useContext, useEffect, useState} from "react";
+import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/header/Header.jsx";
 import clinicHeader from "../../assets/Mountainbike-trainings.png"
 import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
+import {AuthContext} from "../../context/AuthContext.jsx";
+import changeDifficultyName from "../../helpers/changeDifficultyName.jsx";
+import {formatTime} from "../../helpers/formatTime.jsx";
 
 function BookClinicPage() {
 
@@ -16,6 +19,7 @@ function BookClinicPage() {
     const [bookingDetails, setBookingDetails] = useState(null);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
+
 
 
     useEffect(() => {
@@ -63,12 +67,17 @@ function BookClinicPage() {
             setError(true);
         }
     }
-
+    const { isAuth } = useContext(AuthContext);
         return (
             <>
-                <Header img={clinicHeader} img_title="mtb-training" title="MTB-Training"/>
+                <Header img={clinicHeader} img_title="mtb-training" title="MTB-Clinic Boeken"/>
                 <main>
+
                     <div>
+                        {!isAuth ? <h3>Om een MTB-Clinic te kunnen boeken moet u ingelogd zijn <br/>
+                            <p><Link to="/inloggen">Login of Registreer</Link> om de Clinic te kunnen boeken </p>
+                        </h3> : <p>Hello</p>
+                        }
                         {clinic ? (<div>
                             <h2>{clinic.name}</h2>
                             <h4>Uw gereserveerde clinic</h4>
@@ -77,17 +86,16 @@ function BookClinicPage() {
                                 <div>
                                     <TrainingPicture trainingId={clinic.id}/>
                                 </div>
-                                {/*<div>*/}
-                                {/*    <h4>Mountainbike specificaties.</h4>*/}
-                                {/*    <p>Wielgrootte: {mountainbike.wheelSize}</p>*/}
-                                {/*    <p>Frame maat: {frameSizeDutch(mountainbike.frameSize)}</p>*/}
-                                {/*    <p>Versnellingen: {mountainbike.gears}</p>*/}
-                                {/*    <p>Type: {adultOrChild(mountainbike.forAdult)}</p>*/}
-                                {/*    <p>Prijs per dag: € {mountainbike.pricePerDayPart},-</p>*/}
-                                {/*    <p>Prijs per dagdeel (4 uur of minder): € {mountainbike.pricePerDayPart - 10},-</p>*/}
-
-                                {/*</div>*/}
+                                <div>
+                                    <p>Locatie: {clinic.location}</p>
+                                    <p>Expert niveau: {changeDifficultyName(clinic.difficulty)}</p>
+                                    <p>Tijd: {formatTime(clinic.startTime)} - {formatTime(clinic.endTime)}</p>
+                                    <p>Groepstraining: {clinic.trainingInGroup ? 'Ja' : 'Nee'}</p>
+                                    <p>Prijs : € {clinic.price},-</p>
+                                </div>
                             </section>
+
+
 
                         </div>) : (<p>{error}</p>)}
                     </div>
