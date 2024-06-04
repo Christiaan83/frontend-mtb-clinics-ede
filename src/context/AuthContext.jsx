@@ -1,12 +1,13 @@
 import { createContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import  {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
+import {checkTokenValidity} from "../helpers/checkTokenValidity.js";
 
 export const AuthContext = createContext( {} );
 
 // eslint-disable-next-line react/prop-types
-function AuthContextProvider( { children } ) {
+function AuthContextProvider({children}) {
   const [ isAuth, toggleIsAuth ] = useState( {
     isAuth: false,
     user: null,
@@ -14,92 +15,86 @@ function AuthContextProvider( { children } ) {
   } );
   const navigate = useNavigate();
 
-  useEffect( () => {
-    const token = localStorage.getItem( 'token' );
-
-    if ( token ) {
-      const decoded = jwtDecode( token );
-      void fetchUserData( decoded.sub, token );
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken && checkTokenValidity(storedToken)) {
+      try {
+        jwtDecode(storedToken);
+        void loginWithToken(storedToken);
+      } catch (error) {
+        console.error('Invalid token:', error);
+        void logout();
+      }
     } else {
-      toggleIsAuth( {
-        isAuth: false,
-        user: null,
-        status: 'done',
-      } );
+      void logout();
     }
-  }, [] );
+  }, []);
 
-  function login( JWT ) {
-    localStorage.setItem( 'token', JWT );
-    const decoded = jwtDecode( JWT );
-    void fetchUserData( decoded.sub, JWT, '/profile' );
-    // link de gebruiker door naar de profielpagina
-    // navigate('/profile');
-  }
-
-  function logout() {
-    localStorage.clear();
-    toggleIsAuth( {
-      isAuth: false,
-      user: null,
-      status: 'done',
-    } );
-
-    console.log( 'Gebruiker is uitgelogd!' );
-    navigate( '/' );
-  }
-
-  // Omdat we deze functie in login- en het mounting-effect gebruiken, staat hij hier gedeclareerd!
-  async function fetchUserData( id, token, redirectUrl ) {
+  const loginWithToken = async (jwtToken) => {
     try {
-      // haal gebruikersdata op met de token en id van de gebruiker
-      const result = await axios.get( `http://localhost:3000/600/users/${ id }`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${ token }`,
-        },
-      } );
-
-      // zet de gegevens in de state
-      toggleIsAuth( {
-        ...isAuth,
+      const decodedToken = jwtDecode(jwtToken);
+      localStorage.setItem("token", jwtToken);
+      const response = await axios.get(
+          `http://localhost:8080/users/${decodedToken.sub}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${jwtToken}`,
+            },
+          },
+      );
+      toggleIsAuth({
         isAuth: true,
         user: {
-          username: result.data.username,
-          email: result.data.email,
-          id: result.data.id,
+          username: response.data.username,
+          email: response.data.email,
+          id: response.data.sub,
         },
-        status: 'done',
-      } );
-
-      // als er een redirect URL is meegegeven (bij het mount-effect doen we dit niet) linken we hiernnaartoe door
-      // als we de history.push in de login-functie zouden zetten, linken we al door voor de gebuiker is opgehaald!
-      if ( redirectUrl ) {
-        navigate( redirectUrl );
-      }
-
-    } catch ( e ) {
-      console.error( e );
-      // ging er iets mis? Plaatsen we geen data in de state
-      toggleIsAuth( {
-        isAuth: false,
-        user: null,
-        status: 'done',
-      } );
+        status: "done",
+      });
+      console.log("De gebruiker is ingelogd 🔓");
+    } catch (error) {
+      console.error('Error during login process:', error);
+      void logout();
     }
-  }
-
-  const contextData = {
-    ...isAuth,
-    login,
-    logout
   };
 
+
+  const login = async (jwtToken) => {
+    if (!jwtToken || typeof jwtToken !== 'string') {
+      console.error('Invalid token passed to login:', jwtToken);
+      return;
+    }
+    try {
+      await loginWithToken(jwtToken);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const logout = () => {
+    toggleIsAuth({
+      isAuth: false,
+      user: null,
+      status: "done",
+    });
+    localStorage.removeItem("token");
+    console.log("De gebruiker is uitgelogd 🔒");
+    navigate("/");
+  };
+
+  const data = {
+    isAuth: isAuth.isAuth,
+    user: isAuth.user,
+    logout,
+    login,
+  };
   return (
-      <AuthContext.Provider value={ contextData }>
-        { isAuth.status === 'done' ? children : <p>Loading...</p> }
+      <AuthContext.Provider value={data}>
+        {isAuth.status === "done" ? children : <p>Loading...</p>}
       </AuthContext.Provider>
   );
 }
+
 
 export default AuthContextProvider;

@@ -23,7 +23,7 @@ function Navigation() {
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                                  to="/mtb-verhuur">MTB-Verhuur</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
-                                 to="/inloggen"><User size={28} /></NavLink></li>
+                                 to="/mijnpagina"><User size={28} /></NavLink></li>
                 </ul>
             </div>
         </nav>

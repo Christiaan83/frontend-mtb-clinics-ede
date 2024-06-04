@@ -12,12 +12,12 @@ import MtbClinics from "./pages/mtbClinics/MtbClinics.jsx";
 import BookClinicPage from "./pages/BookClinic/BookClinicPage.jsx";
 import {AuthContext} from "./context/AuthContext.jsx";
 import {useContext} from "react";
-import SignIn from "./pages/SignIn.jsx";
+import Users from "./pages/Users/Users.jsx";
 
 
 function App() {
 
-    const { isAuth } = useContext(AuthContext);
+    const {isAuth, user } = useContext(AuthContext);
 
   return (
     <>
@@ -30,7 +30,18 @@ function App() {
             <Route path="/mtb-routes/:id" element={<RouteDetails/>} />
             <Route path="/mtb-verhuur" element={<RentalPage/>}/>
             <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
-            <Route path="/inloggen" element={<SignIn />}/>
+            <Route path="/mijnpagina" element={<Users />}/>
+
+
+            {/*{isAuth && user?.authority === 'admin' && (*/}
+            {/*    <>*/}
+            {/*        <Route path="/admin/dashboard" element={<AdminDashboard />} />*/}
+            {/*        <Route path="/admin/mountainbikes" element={<ManageMountainbikes />} />*/}
+            {/*        <Route path="/admin/routes" element={<ManageRoutes/>} />*/}
+            {/*        <Route path="/admin/routes" element={<ManageUsers/>} />*/}
+            {/*        <Route path="/admin/bookings" element={<ManageBookings/>} />*/}
+            {/*    </>*/}
+            {/*)}*/}
         </Routes>
         <Footer/>
     </>
