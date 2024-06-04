@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext.jsx';
 
-function Login() {
+function Users() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, toggleError] = useState(false);
@@ -107,4 +107,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Users;
