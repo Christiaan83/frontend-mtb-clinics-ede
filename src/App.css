@@ -52,6 +52,22 @@ em {
   font-style: italic;
 }
 
+input{
+  border: none;
+  border-bottom: 1px solid #ccc;
+  outline: none;
+}
+input::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 0;
+  height: 2px;
+  background-color: black;
+  animation: blink 1s steps(2, start) infinite;
+}
+
 button {
   background-color: var(--color-secondary);
   color: var(--color-white);
