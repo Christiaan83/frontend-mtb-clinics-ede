@@ -176,35 +176,36 @@ function BookRentalPage() {
                                 <h5>Voor nu is het alleen mogelijk om in het weekend te reserveren. Wij hopen in de
                                     toekomst
                                     meerdere dagen aan te bieden.</h5>
-                                <h6>Een mountainbike kan tussen 8:00 en 19:00 worden opgehaald en moet uiterlijk om 20:00 worden terug gebracht. </h6>
+                                <h6>Een mountainbike kan tussen 8:00 en 19:00 worden opgehaald en moet uiterlijk om
+                                    20:00 worden terug gebracht. </h6>
                             </div>
                             <div className="date-time">
-                            <HandleDateChange onDateChange={setStartDate}/>
-                            <label htmlFor="startTime">Ophalen:&nbsp;
-                            <select id="startTime"
-                                    value={startTime}
-                                    onChange={(e) => setStartTime(e.target.value)}
-                                    required>
-                                <option value="" disabled>Gewenste tijd</option>
-                                {generateTimeOptions(8, 18, 30).map((time) => (<option key={time} value={time}>
-                                    {time}
-                                </option>))}
-                                <option value="19:00">19:00</option>
-                            </select>
-                            </label>
-                            <label htmlFor="endTime">Terug brengen:&nbsp;
-                            <select id="endTime"
-                                    value={endTime}
-                                    onChange={(e) => setEndTime(e.target.value)}
-                                    required>
-                                <option value="" disabled>Gewenste tijd</option>
-                                {generateTimeOptions(9, 19, 30).map((time) => (<option key={time} value={time}>
-                                    {time}
-                                </option>))}
-                                <option value="20:00">20:00</option>
-                            </select>
-                            </label>
-                            <button className="button" onClick={handleRentalAndUserCreation}>Boeken</button>
+                                <HandleDateChange onDateChange={setStartDate}/>
+                                <label htmlFor="startTime">Ophalen:&nbsp;
+                                    <select id="startTime"
+                                            value={startTime}
+                                            onChange={(e) => setStartTime(e.target.value)}
+                                            required>
+                                        <option value="" disabled>Gewenste tijd</option>
+                                        {generateTimeOptions(8, 18, 30).map((time) => (<option key={time} value={time}>
+                                            {time}
+                                        </option>))}
+                                        <option value="19:00">19:00</option>
+                                    </select>
+                                </label>
+                                <label htmlFor="endTime">Terug brengen:&nbsp;
+                                    <select id="endTime"
+                                            value={endTime}
+                                            onChange={(e) => setEndTime(e.target.value)}
+                                            required>
+                                        <option value="" disabled>Gewenste tijd</option>
+                                        {generateTimeOptions(9, 19, 30).map((time) => (<option key={time} value={time}>
+                                            {time}
+                                        </option>))}
+                                        <option value="20:00">20:00</option>
+                                    </select>
+                                </label>
+                                <button className="button" onClick={handleRentalAndUserCreation}>Boeken</button>
                             </div>
                         </form>
                     </div>
@@ -213,39 +214,42 @@ function BookRentalPage() {
 
                 </section>
                 {rentalDetails && (
-                <div>
-                    <h3 className="booking-title">Hieronder je boeking.</h3>
-                    <div className="booking-sub-title">
-                    <p>Tijdens het ophalen kan je contant of met de pin betalen. <a className="link-to" href="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede" target="_blank"> Hier </a>kan de mountainbike worden opgehaald.</p>
-                    </div>
-                    <section className="booking-details">
-                        <div>
-                        <h4>Datum en tijd</h4>
-                    <p>Datum: {new Date(rentalDetails.startDate).toLocaleDateString('nl-NL')}</p>
-            <p>Tijd: {formatTime(rentalDetails.startTime)} - {formatTime(rentalDetails.endTime)}</p>
+                    <div>
+                        <h3 className="booking-title">Hieronder je boeking.</h3>
+                        <div className="booking-sub-title">
+                            <p>Tijdens het ophalen kan je contant of met de pin betalen. <a className="link-to"
+                                                                                            href="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede"
+                                                                                            target="_blank"> Hier </a>kan
+                                de mountainbike worden opgehaald.</p>
                         </div>
-                        <div>
-                            <h4>Mountainbike</h4>
-                            <p>Soort mountainbike: {rentalDetails.mountainbikeDto.name}</p>
-                            <p>Frame grootte: {frameSizeDutch(rentalDetails.mountainbikeDto.frameSize)}</p>
-                            <p>Volledig geveerd: {rentalDetails.mountainbikeDto.fullSuspension ? 'Ja' : 'Nee'} </p>
-                            <p>Versnellingen: {rentalDetails.mountainbikeDto.gears}</p>
-                            <p> Prijs: € {" "}
-                                {rentalDetails.rentingWholeDay
-                                    ? rentalDetails.mountainbikeDto.pricePerDayPart
-                                    : rentalDetails.mountainbikeDto.pricePerDayPart - 10},-</p>
+                        <section className="booking-details">
+                            <div>
+                                <h4>Datum en tijd</h4>
+                                <p>Datum: {new Date(rentalDetails.startDate).toLocaleDateString('nl-NL')}</p>
+                                <p>Tijd: {formatTime(rentalDetails.startTime)} - {formatTime(rentalDetails.endTime)}</p>
+                            </div>
+                            <div>
+                                <h4>Mountainbike</h4>
+                                <p>Soort mountainbike: {rentalDetails.mountainbikeDto.name}</p>
+                                <p>Frame grootte: {frameSizeDutch(rentalDetails.mountainbikeDto.frameSize)}</p>
+                                <p>Volledig geveerd: {rentalDetails.mountainbikeDto.fullSuspension ? 'Ja' : 'Nee'} </p>
+                                <p>Versnellingen: {rentalDetails.mountainbikeDto.gears}</p>
+                                <p> Prijs: € {" "}
+                                    {rentalDetails.rentingWholeDay
+                                        ? rentalDetails.mountainbikeDto.pricePerDayPart
+                                        : rentalDetails.mountainbikeDto.pricePerDayPart - 10},-</p>
+                            </div>
+                            <div>
+                                <h4>Persoonlijke informatie</h4>
+                                <p>Naam: {rentalDetails.unregisteredUserDto.firstName} {rentalDetails.unregisteredUserDto.lastName}</p>
+                                <p>Email: {rentalDetails.unregisteredUserDto.email}</p>
+                                <p>Telefoonnummer: 0{rentalDetails.unregisteredUserDto.mobileNumber} </p>
+                            </div>
+                        </section>
+                        <div className="back-to-links">
+                            <Link className="link" to="/">Terug naar Home</Link>
+                            <Link className="link" to="/mtb-verhuur">Terug naar MTB-Verhuur</Link>
                         </div>
-                        <div>
-                            <h4>Persoonlijke informatie</h4>
-                            <p>Naam: {rentalDetails.unregisteredUserDto.firstName} {rentalDetails.unregisteredUserDto.lastName}</p>
-                            <p>Email: {rentalDetails.unregisteredUserDto.email}</p>
-                            <p>Telefoonnummer: 0{rentalDetails.unregisteredUserDto.mobileNumber} </p>
-                        </div>
-                    </section>
-                    <div className="back-to-links">
-                        <Link className="link" to="/">Terug naar Home</Link>
-                        <Link className="link" to="/mtb-verhuur">Terug naar MTB-Verhuur</Link>
-                    </div>
                     </div>
                 )}
             </div>
