@@ -3,12 +3,12 @@ import {useState} from 'react';
 // eslint-disable-next-line react/prop-types
 const HandleDateChange = ({onDateChange}) => {
 
-    const [startDate, setStartDate] = useState(null);
-    const [error, setError] = useState(false);
+    const [startDate, setStartDate] = useState('');
+    const [error, setError] = useState('');
 
 
     const handleDateSelection = (e) => {
-        setError(false);
+        setError('');
 
         const selectedDate = e.target.value;
 
@@ -19,7 +19,7 @@ const HandleDateChange = ({onDateChange}) => {
         const currentDate = new Date();
         const dayOfWeek = dateObject.getDay();
         const isValidDay = dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0;
-        const isFutureNextYear = dateObject> currentDate && dateObject <= oneYearFromNow;
+        const isFutureNextYear = dateObject > currentDate && dateObject <= oneYearFromNow;
         const futureDate = oneYearFromNow.toLocaleDateString('nl-NL');
 
         if (!isFutureNextYear || !isValidDay) {
@@ -28,24 +28,22 @@ const HandleDateChange = ({onDateChange}) => {
         }
 
         setStartDate(selectedDate);
-        setError(null);
+        setError('');
         onDateChange(selectedDate);
     };
 
-    return (
-        <>
+    return (<>
             <label htmlFor="startDate">Gewenste datum:&nbsp;
-            <input
-                type="date"
-                id="startDate"
-                value={startDate}
-                onChange={handleDateSelection}
-                required
-            />
+                <input
+                    type="date"
+                    id="startDate"
+                    value={startDate}
+                    onChange={handleDateSelection}
+                    required
+                />
             </label>
             {error && <p className="error-message">{error}</p>}
-        </>
-    );
+        </>);
 };
 
 export default HandleDateChange;
