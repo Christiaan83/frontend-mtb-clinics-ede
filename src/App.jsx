@@ -13,6 +13,7 @@ import BookClinicPage from "./pages/BookClinic/BookClinicPage.jsx";
 import {AuthContext} from "./context/AuthContext.jsx";
 import {useContext} from "react";
 import Users from "./pages/Users/Users.jsx";
+import Register from "./pages/Users/Register.jsx";
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
             <Route path="/mtb-routes/:id" element={<RouteDetails/>} />
             <Route path="/mtb-verhuur" element={<RentalPage/>}/>
             <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
-            <Route path="/mijnpagina" element={<Users />}/>
+            <Route path="/mijnpagina" element={<Users/>}/>
+            <Route path="/registreer" element={<Register/>}/>
 
 
             {/*{isAuth && user?.authority === 'admin' && (*/}
