@@ -1,6 +1,9 @@
 import { useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext.jsx';
+import {Link} from "react-router-dom";
+import Header from "../../components/header/Header.jsx";
+import headerPic from "../../assets/Header1.png";
 
 function Users() {
     const [username, setUsername] = useState('');
@@ -52,6 +55,7 @@ function Users() {
 
     return (
         <>
+            <Header img={headerPic} img_title="header-pic" title="Mijn Pagina"/>
         <div>
             <h1>{isAuth ? 'Uitloggen' : 'Inloggen'}</h1>
             <p>{isAuth ? 'druk op knop om uit te loggen': 'Vul hieronder je gegevens in om in te loggen' }</p>
@@ -102,7 +106,7 @@ function Users() {
                 </button>
             )}
 
-            <h5>Heb je nog geen account? Registreer je dan hier.</h5>
+            <h5>Heb je nog geen account? Registreer je dan <Link to="/registreer">hier</Link>. </h5>
         </>
     );
 }
