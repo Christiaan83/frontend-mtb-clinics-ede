@@ -59,7 +59,7 @@ function Home() {
                     <h2>Onze aangeboden opties</h2>
                     <ul className='home-info-blocks'>
                         <li className='info-items'>
-                            <Link to="/clinics">
+                            <Link to="/mtb-clinics">
                                 <h4 className='home-block-text'>MTB-Clinics</h4>
                                 <img src={clinics} alt="clinics"/>
                                 <p className='home-block-text paragraph-text'> Met de juiste techniek kun jij iedere
