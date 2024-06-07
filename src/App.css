@@ -52,12 +52,10 @@ em {
   font-style: italic;
 }
 
-input{
-  border: none;
-  border-bottom: 1px solid #ccc;
+input, textarea{
   outline: none;
 }
-input::after {
+input::after, textarea::after {
   content: "";
   position: absolute;
   left: 0;
