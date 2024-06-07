@@ -1,3 +1,5 @@
+
+import "../mtbClinics/MtbClinics.css"
 import {useContext, useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
@@ -7,8 +9,9 @@ import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import changeDifficultyName from "../../helpers/changeDifficultyName.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
-import {jwtDecode} from "jwt-decode";
 import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import difficultyName from "../../helpers/changeDifficultyName.jsx";
+import getDecodedToken from "../../helpers/getDecodedToken.jsx";
 
 
 function BookClinicPage() {
@@ -19,27 +22,17 @@ function BookClinicPage() {
     const [user, setUser] = useState('');
     const [, setBookingId] = useState('');
     const [bookingDate, setBookingDate] = useState('');
-    const [, setBookingDetails] = useState('');
+    const [message, setMessage] = useState('');
+    const [bookingDetails, setBookingDetails] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
 
 
     const token = localStorage.getItem('token');
-    let decodedToken = null;
-
-    if (isAuth && token && token.split('.').length === 3) {
-        try {
-            decodedToken = jwtDecode(token);
-        } catch (error) {
-            console.error("Invalid token:", error);
-            localStorage.removeItem('token');
-        }
-    }
-
+    const decodedToken = getDecodedToken(isAuth)
 
     useEffect(() => {
         setError('');
-
         async function getClinicAndUserDetails() {
 
             try {
@@ -81,12 +74,14 @@ function BookClinicPage() {
                 },
             };
 
-            const bookingResponse = await axios.post(`http://localhost:8080/bookings`, {bookingDate}, config);
+            const bookingResponse = await axios.post(`http://localhost:8080/bookings`,
+                {bookingDate, message}, config);
 
             const bookingId = bookingResponse.data.id;
             console.log(bookingId)
             setBookingId(bookingId);
 
+            setMessage('')
             setBookingDate('')
             setSuccess(true)
 
@@ -99,6 +94,11 @@ function BookClinicPage() {
             });
             const bookingDetails = bookingDetailsResponse.data;
             setBookingDetails(bookingDetails);
+
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
 
         } catch (err) {
             console.error("Error during booking:", err);
@@ -113,47 +113,108 @@ function BookClinicPage() {
 
     return (<>
             <Header img={clinicHeader} img_title="mtb-training" title="MTB-Clinic Boeken"/>
-            <main>
-                <div>
-                    {!isAuth ? (<h4>
+            <main className="outer-content-container">
+                <div className="inner-content-container">
+                    <div className="booking-welcome">
+                        {!isAuth ? (<h4>
                             Om een MTB-Clinic te kunnen boeken moet u ingelogd zijn <br/>
-                            <p><Link to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>
+                            <p><Link className="link" to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>
                         </h4>) : (<div>
                             {isAuth && user ? (<div>
-                                    <h4>Beste {user.firstName} {user.lastName}, welkom op de boekingspagina!</h4>
-                                </div>) : (<p>Geen gebruiker gevonden</p>)}
+                                <h3>Beste {user.firstName} {user.lastName}, welkom op de boekingspagina!</h3>
+                            </div>) : (<p>Geen gebruiker gevonden</p>)}
                         </div>)}
-                    {clinic ? (<section>
-                            <h2>{clinic.name}</h2>
-                            <h4>Uw gereserveerde clinic</h4>
-                            <div>
-                                <TrainingPicture trainingId={clinic.id}/>
-                            </div>
-                            <div>
-                                <p>Locatie: {clinic.location}</p>
-                                <p>Expert niveau: {changeDifficultyName(clinic.difficulty)}</p>
-                                <p>Tijd: {formatTime(clinic.startTime)} - {formatTime(clinic.endTime)}</p>
-                                <p>Groepstraining: {clinic.trainingInGroup ? 'Ja' : 'Nee'}</p>
-                                <p>Prijs: €{clinic.price.toFixed(2)},-</p>
-                            </div>
-                        </section>) : (error && <p>er is iets fout gegaan probeer later opnieuw</p>)}
-                </div>
-                {isAuth && user ? (<form>
-                        <br/>
+                    </div>
+                    <div className="clinic-booking-info">
+                        <h3>Uw gereserveerde MTB-clinic: </h3>
+                        <h3> {clinic.name}</h3>
+                    </div>
+                    {clinic ? (
+                        <section className="mtb-info-container">
+                        <div className="booking-picture">
+                            <TrainingPicture  trainingId={clinic.id}/>
+                        </div>
                         <div>
+                            <h4>Uw MTB-clinic informatie</h4>
+                            <p>Locatie: {clinic.location}</p>
+                            <p>Expert niveau: {changeDifficultyName(clinic.difficulty)}</p>
+                            <p>Tijd: {formatTime(clinic.startTime)} - {formatTime(clinic.endTime)}</p>
+                            <p>Groepstraining: {clinic.trainingInGroup ? 'Ja' : 'Nee'}</p>
+                            <p>Prijs: € {clinic.price.toFixed(2)},-  {(clinic.trainingInGroup) ? ' per persoon' : ''}</p>
+                        </div>
+                    </section>) : (error && <p>er is iets fout gegaan probeer later opnieuw</p>)}
+
+                    {isAuth && user ? (<form className= "booking-border">
+                        <br/>
+                        <div className="date-message-booking ">
                             <h5>Voor nu is het alleen mogelijk om in het weekend te reserveren. Wij hopen in de
                                 toekomst meerdere dagen aan te bieden.</h5>
                         </div>
-                        <div className="date-time">
+                        <div className="date-message-booking ">
                             <HandleDateChange onDateChange={setBookingDate}/>
+                            <label htmlFor="message">Geef aan met hoeveel personen je wenst komen.
+                                <form>
+                                <textarea value={message}
+                                          onChange={(e) => setMessage(e.target.value)}
+                                          placeholder="Typ hier uw antwoord en eventueel andere wensen... "
+                                          cols="50"
+                                          rows="8"
+                                          required>
+                                </textarea>
+
+
+                                </form>
+                            </label>
+
                             <button className="button" onClick={handleBooking}>Boeken</button>
                         </div>
-                    </form>) : (<p><Link to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>)}
+                    </form>) : (<p><Link className="link" to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>)}
 
-                {error && <p className="error-message">Er is iets fout gegaan probeer opnieuw!</p>}
-                {success && <h2 className="success-message">Bedankt voor het boeken!</h2>}
+                    {error && <p className="error-message">Er is iets fout gegaan probeer opnieuw!</p>}
+                    {success && <h2 className="success-message">Bedankt voor het boeken!</h2>}
+
+                    <section>
+                        {bookingDetails && (
+                            <div>
+                                <h3 className="booking-title">Hieronder je boeking.</h3>
+                                <div className="booking-sub-title">
+                                    <p>Tijdens het aanmelden op locatie kan je contant of met de pin betalen.
+                                        <Link className="link"
+                                              to="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede"
+                                              target="/"> Hier</Link>(Akulaan 2, Ede) worden de clinics gegeven en kan jij je
+                                        aanmelden.</p>
+                                </div>
+                                <section className="booking-details">
+                                    <div>
+                                        <h4>Datum en tijd</h4>
+                                        <p>Datum: {new Date(bookingDetails.bookingDate).toLocaleDateString('nl-NL')}</p>
+                                        <p>Tijd: {formatTime(bookingDetails.trainingDto.startTime)} - {formatTime(bookingDetails.trainingDto.endTime)}</p>
+                                    </div>
+                                    <div>
+                                        <h4>Uw bericht</h4>
+                                        <p>{bookingDetails.message}</p>
+                                    </div>
+                                    <div>
+                                        <h4>MTB-Clinic informatie</h4>
+                                        <h5>{bookingDetails.trainingDto.name}</h5>
+                                        <p>Moeilijkheidsgraad: {difficultyName(bookingDetails.trainingDto.difficulty)}</p>
+                                        <p>Prijs: € { (bookingDetails.trainingDto.price).toFixed(2)} {(bookingDetails.trainingDto.trainingInGroup) ? ' per persoon' : ''}</p>
+                                    </div>
+                                    {isAuth && user ? (
+                                        <div>
+                                            <h4>Persoonlijke informatie</h4>
+                                            <p>Naam: {user.firstName} {user.lastName}</p>
+                                            <p>Email: {user.email}</p>
+                                            <p>Telefoonnummer: 0{user.mobileNumber} </p>
+                                        </div>) : (<p>Geen gebruiker gevonden</p>)}
+                                </section>
+                            </div>
+
+                        )}
+                    </section>
+                </div>
             </main>
-        </>);
+    </>);
 }
 
 export default BookClinicPage;

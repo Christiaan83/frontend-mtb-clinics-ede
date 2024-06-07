@@ -36,7 +36,7 @@ function Register() {
             setSuccess(true);
             setTimeout(() => {
                 navigate('/mijnpagina');
-            }, 1000);
+            }, 1500);
 
         } catch (e) {
             console.error(e);
@@ -53,6 +53,8 @@ function Register() {
 
     return (<>
             <Header img={headerPic} img_title="header-pic" title="Registreren"/>
+        <section className="user-section register">
+            <div className= "content-wrapper register-wrapper">
             <form onSubmit={handleRegister}>
                 <label htmlFor="first-name-field">
                     Voornaam:
@@ -134,7 +136,8 @@ function Register() {
                     {loading ? 'Registreren...' : 'Registreren'}
                 </button>
             </form>
-
+            </div>
+        </section>
         </>)
 }
 
