@@ -51,6 +51,7 @@ function RentalPage() {
             console.log(response.data);
             setSearch(response.data);
 
+
         } catch (err) {
             console.error(err);
             toggleError(true);

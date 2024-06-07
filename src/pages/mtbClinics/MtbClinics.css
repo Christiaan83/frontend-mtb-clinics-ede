@@ -3,5 +3,45 @@
     flex-basis: 500px;
     text-align: left;
 
+}
+.clinic-booking-info{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 20px;
+}
 
+.booking-welcome{
+    padding-top: 10px;
+}
+
+.booking-picture{
+    padding:5px 5px 0 5px ;
+    border: 3px solid var(--color-primary);
+    width: 40vw;
+    height: auto;
+}
+
+.booking-border {
+    width: 72%;
+    margin: 20px auto;
+    text-align: left;
+    padding: 0 15px 5px 15px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.date-message-booking {
+    margin-bottom: 15px;
+}
+
+.date-message-booking label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.date-message-booking textarea {
+    width: 90%;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }

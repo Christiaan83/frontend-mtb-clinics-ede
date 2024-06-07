@@ -1,5 +1,4 @@
 import './MtbClinics.css'
-import '../../App.css'
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Helmet} from "react-helmet";
@@ -66,7 +65,7 @@ return (
                                 <p> {clinics.description}</p>
                                 <br/>
                                 <p>Moeilijkheidsgraad: {difficultyName(clinics.difficulty)}</p>
-                                <p>Prijs: € {clinics.price.toFixed(2)} {clinics.trainingInGroup ? ' per persoon' : '' }</p>
+                                <p>Prijs: € {(clinics.price).toFixed(2)} {clinics.trainingInGroup ? ' per persoon' : '' }</p>
                                 <p>Begin tijd: {formatTime(clinics.startTime)}</p>
                                 <p>Eindtijd: {formatTime(clinics.endTime)}</p>
                                 <p>Locatie:&nbsp;

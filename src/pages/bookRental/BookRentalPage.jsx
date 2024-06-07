@@ -98,6 +98,11 @@ function BookRentalPage() {
             const rentalDetails = rentalDetailResponse.data;
             setRentalDetails(rentalDetails);
 
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+
         } catch (err) {
             console.error(err);
             setError(true);
@@ -217,9 +222,10 @@ function BookRentalPage() {
                     <div>
                         <h3 className="booking-title">Hieronder je boeking.</h3>
                         <div className="booking-sub-title">
-                            <p>Tijdens het ophalen kan je contant of met de pin betalen. <a className="link-to"
-                                                                                            href="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede"
-                                                                                            target="_blank"> Hier </a>kan
+                            <p>Tijdens het ophalen kan je contant of met de pin betalen.
+                                <a className="link-to"
+                                   href="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede"
+                                   target="_blank"> Hier </a>kan
                                 de mountainbike worden opgehaald.</p>
                         </div>
                         <section className="booking-details">

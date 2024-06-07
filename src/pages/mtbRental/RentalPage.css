@@ -57,14 +57,7 @@
     width: 200px;
     background-color: var(--color-primary);
 }
-.booking-details{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 15px 5px;
-    margin: 5px;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-}
+
 
 .back-to-links{
     display: flex;
@@ -78,4 +71,13 @@
 
 .booking-sub-title{
     font-size: 14px;
+}
+
+.booking-details{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 15px 5px;
+    margin: 15px 0 ;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }
