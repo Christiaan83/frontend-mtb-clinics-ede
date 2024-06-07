@@ -1,17 +1,15 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../../pages/mtbRental/RentalPage.css'
-
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-const MtbPicture = ({ mountainbike }) => {
+const TrainingPicture = ({ training, trainingId}) => {
     const [imageUrl, setImageUrl] = useState(null);
 
     useEffect(() => {
-        const fetchMtbPicture = async () => {
+        const fetchTrainingPicture = async () => {
             try {
-                // eslint-disable-next-line react/prop-types
-                const response = await axios.get(`http://localhost:8080/mountainbikes/${mountainbike.id}/picture`, {
+
+                const response = await axios.get(`http://localhost:8080/trainings/${trainingId}/picture`, {
                     responseType: 'blob',
                 });
                 const newImageUrl = URL.createObjectURL(response.data);
@@ -21,20 +19,19 @@ const MtbPicture = ({ mountainbike }) => {
             }
         };
 
-        fetchMtbPicture();
+        fetchTrainingPicture();
 
         return () => {
             if (imageUrl) {
                 URL.revokeObjectURL(imageUrl);
             }
         };
-    }, [mountainbike]);
+    }, [training, trainingId]);
 
     return (
         <div>
             {imageUrl ? (
-                // eslint-disable-next-line react/prop-types
-                <img src={imageUrl} alt={`Mountainbike ${mountainbike.id}`} />
+                <img src={imageUrl} alt={`Training ${trainingId}`} />
             ) : (
                 <p>Loading image...</p>
             )}
@@ -42,4 +39,4 @@ const MtbPicture = ({ mountainbike }) => {
     );
 };
 
-export default MtbPicture;
+export default TrainingPicture;

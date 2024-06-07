@@ -28,34 +28,6 @@
     box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.1);
 }
 
-.rental-blocks-section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rental-blocks{
-    display: flex;
-    width: 80%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 10px 0 10px 0;
-
-
-}
-.rental-blocks-info  {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 300px;
-    text-align: center;
-    border-radius: 4px;
-    border: 1px solid lightgray;
-    background-color: var(--color-background-primary);
-    padding: 10px ;
-    margin: 20px 10px;
-    box-shadow: 4px 5px 8px 2px rgba(0,0,0,0.3);
-
-}
 
 .booking-box{
     display: flex;
@@ -82,17 +54,10 @@
 }
 
 .booking-button{
-    width: 100px;
+    width: 200px;
     background-color: var(--color-primary);
 }
-.booking-details{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 10px 15px 5px;
-    margin: 5px;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-}
+
 
 .back-to-links{
     display: flex;
@@ -107,10 +72,12 @@
 .booking-sub-title{
     font-size: 14px;
 }
-.link-to,
-.link-to:visited{
-    color: var(--color-primary);
-}
-.link-to:hover{
-    color: var(--color-secondary);
+
+.booking-details{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 15px 5px;
+    margin: 15px 0 ;
+    border: 1px solid lightgray;
+    border-radius: 5px;
 }

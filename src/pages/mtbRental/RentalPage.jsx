@@ -51,6 +51,7 @@ function RentalPage() {
             console.log(response.data);
             setSearch(response.data);
 
+
         } catch (err) {
             console.error(err);
             toggleError(true);
@@ -126,36 +127,36 @@ function RentalPage() {
                                     <option value="false">Voorvering</option>
                                 </select>
                         </div>
-                                <button type="submit" className="search-button">Zoeken</button>
+                                <button type="submit" className="button">Zoeken</button>
                     </form>
                     </div>
                     {error && <p>Error fetching mountain bikes</p>}
-                    <section className="rental-blocks-section">
+                    <section className="blocks-section">
                         {search.length > 0 ? (
-                            <div className='rental-blocks'>
+                            <div className='blocks'>
                             {search.map((mtb) =>
-                                <ul className='rental-blocks-info' key={mtb.id}>
-                                <li>
-                                    <h2>{mtb.name}</h2>
-                                    <div className="mtb-rental-img" >
-                                    <MtbPicture mountainbike={mtb}/>
-                                    </div>
-                                    <br/>
-                                    <p>Wielgrootte: {mtb.wheelSize}</p>
-                                    <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
-                                    <p>Versnellingen: {mtb.gears}</p>
-                                    <p>Volledig geveerd: {mtb.fullSuspension ? 'Ja' : 'Nee'}</p>
-                                    <p>Type: {adultOrChild(mtb.forAdult)}</p>
-                                    <p>Prijs hele dag: € {mtb.pricePerDayPart},-</p>
-                                    <p>Prijs per dagdeel (4 uur of minder): € {mtb.pricePerDayPart - 10},-</p>
-                                    <br/>
-                                    <div>
-                                    <button type="submit"><Link to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
+                                <ul className='blocks-info' key={mtb.id}>
+                                    <li>
+                                        <h2>{mtb.name}</h2>
+                                        <div className="mtb-rental-img">
+                                            <MtbPicture mountainbike={mtb}/>
+                                        </div>
+                                        <br/>
+                                        <p>Wielgrootte: {mtb.wheelSize}</p>
+                                        <p>Frame maat: {frameSizeDutch(mtb.frameSize)}</p>
+                                        <p>Versnellingen: {mtb.gears}</p>
+                                        <p>Volledig geveerd: {mtb.fullSuspension ? 'Ja' : 'Nee'}</p>
+                                        <p>Type: {adultOrChild(mtb.forAdult)}</p>
+                                        <p>Prijs hele dag: € {mtb.pricePerDayPart},-</p>
+                                        <p>Prijs per dagdeel (4 uur of minder): € {mtb.pricePerDayPart - 10},-</p>
+                                        <br/>
+
+                                    </li>
+                                    <button className="booking-button" type="submit"><Link
+                                        to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
                                     </button>
-                                    </div>
-                                </li>
-                            </ul>)}
-                        </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
+                                </ul>)}
+                            </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
                     </section>
             </main>
         </>
