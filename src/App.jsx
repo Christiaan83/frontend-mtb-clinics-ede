@@ -35,7 +35,7 @@ function App() {
             <Route path="/registreer" element={<Register/>}/>
 
 
-            {/*{isAuth && user?.authority === 'admin' && (*/}
+            {/*{isAuth && user?.authority === 'ADMIN' && (*/}
             {/*    <>*/}
             {/*        <Route path="/admin/dashboard" element={<AdminDashboard />} />*/}
             {/*        <Route path="/admin/mountainbikes" element={<ManageMountainbikes />} />*/}
