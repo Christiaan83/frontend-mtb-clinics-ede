@@ -1,0 +1,68 @@
+
+.user-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 20px;
+    padding-right: 40px;
+}
+.user-border{
+    border-bottom: 2px solid grey;
+}
+
+.register{
+    align-items: center;
+}
+.content-wrapper {
+    padding: 0 10px 10px 10px;
+    border-radius: 8px;
+    width: 350px;
+    margin: 10px;
+    border: solid 1px lightgray;
+}
+.register-wrapper{
+    width: 600px;
+}
+.content-wrapper form label {
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+
+.content-wrapper form input {
+    width: calc(100% - 20px);
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.content-wrapper button {
+    margin: 10px 0 10px 0 ;
+}
+
+
+.user-blocks{
+    width: 420px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px;
+}
+.booking-blocks-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.booking-blocks {
+    width: 80%;
+    margin: 20px auto;
+}
+.booking-blocks h3{
+    padding: 5px 15px;
+}
+.booking-block {
+    border: 1px solid lightgray;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
