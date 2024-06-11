@@ -12,7 +12,7 @@ import MtbClinics from "./pages/mtbClinics/MtbClinics.jsx";
 import BookClinicPage from "./pages/bookClinic/BookClinicPage.jsx";
 import Users from "./pages/Users/Users.jsx";
 import Register from "./pages/Users/Register.jsx";
-import getUserRole from "./context/getUserRole.jsx";
+import getUserRole from "./helpers/getUserRole.jsx";
 import ManageRoutes from "./pages/admin/ManageRoutes.jsx";
 import ManageMountainbikes from "./pages/admin/ManageMountainbikes.jsx";
 import ManageUsers from "./pages/admin/ManageUsers.jsx";

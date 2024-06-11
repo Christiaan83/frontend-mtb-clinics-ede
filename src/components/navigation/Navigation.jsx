@@ -4,7 +4,7 @@ import { User } from "@phosphor-icons/react";
 import { scrollerHelper } from '../../helpers/scrollerHelper.jsx'
 import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../context/getUserRole.jsx";
+import getUserRole from "../../helpers/getUserRole.jsx";
 
 
 function Navigation() {
