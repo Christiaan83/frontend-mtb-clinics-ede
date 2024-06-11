@@ -19,6 +19,8 @@ import ManageUsers from "./pages/admin/ManageUsers.jsx";
 import ManageReservations from "./pages/admin/ManageReservations.jsx";
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.jsx";
+import UpdateMtb from "./pages/admin/update/UpdateMtb.jsx";
+import NewMtb from "./pages/admin/new/NewMtb.jsx";
 
 
 
@@ -31,6 +33,8 @@ function App() {
         { path: "/admin/routes", element: (<ManageRoutes/>)},
         { path: "/admin/users", element: (<ManageUsers/>)},
         { path: "/admin/reservations", element: (<ManageReservations/>)},
+        { path: "/admin/mountainbikes/toevoegen", element: (<NewMtb/>)},
+        { path: `/admin/mountainbikes/update/:id`, element: (<UpdateMtb/>)},
     ];
 
 
