@@ -223,7 +223,7 @@ function BookRentalPage() {
                         <h3 className="booking-title">Hieronder je boeking.</h3>
                         <div className="booking-sub-title">
                             <p>Tijdens het ophalen kan je contant of met de pin betalen.
-                                <a className="link-to"
+                                <a className="link"
                                    href="https://maps.google.nl/maps?daddr=Akulaan%202,%206717%20XN%20in%20Ede"
                                    target="_blank"> Hier </a>kan
                                 de mountainbike worden opgehaald.</p>
