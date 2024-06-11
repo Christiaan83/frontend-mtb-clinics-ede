@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 // eslint-disable-next-line react/prop-types
-const RegisterUserForm = ( {createdUserId} ) => {
+const UnregisterUserForm = ( {createdUserId} ) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -85,4 +85,4 @@ const RegisterUserForm = ( {createdUserId} ) => {
     );
 };
 
-export default RegisterUserForm;
+export default UnregisterUserForm;
