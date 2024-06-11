@@ -1,6 +1,6 @@
 
 import './App.css'
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes,} from "react-router-dom";
 import Navigation from "./components/navigation/Navigation.jsx";
 import Home from "./pages/home/Home.jsx";
 import Footer from "./components/footer/Footer.jsx";
@@ -9,18 +9,32 @@ import RouteDetails from "./pages/routeDetails/RouteDetails.jsx";
 import RentalPage from "./pages/mtbRental/RentalPage.jsx"
 import BookRentalPage from "./pages/bookRental/BookRentalPage.jsx";
 import MtbClinics from "./pages/mtbClinics/MtbClinics.jsx";
-import BookClinicPage from "./pages/BookClinic/BookClinicPage.jsx";
-import {AuthContext} from "./context/AuthContext.jsx";
-import {useContext} from "react";
+import BookClinicPage from "./pages/bookClinic/BookClinicPage.jsx";
 import Users from "./pages/Users/Users.jsx";
 import Register from "./pages/Users/Register.jsx";
+import getUserRole from "./context/getUserRole.jsx";
+import ManageRoutes from "./pages/admin/ManageRoutes.jsx";
+import ManageMountainbikes from "./pages/admin/ManageMountainbikes.jsx";
+import ManageUsers from "./pages/admin/ManageUsers.jsx";
+import ManageReservations from "./pages/admin/ManageReservations.jsx";
+import {useContext} from "react";
+import {AuthContext} from "./context/AuthContext.jsx";
+
 
 
 function App() {
 
-    const {isAuth, user } = useContext(AuthContext);
+    const {isAuth} = useContext(AuthContext);
+    const userRole = getUserRole();
+    const adminLinks = [
+        { path: "/admin/mountainbikes", element: (<ManageMountainbikes/>)},
+        { path: "/admin/routes", element: (<ManageRoutes/>)},
+        { path: "/admin/users", element: (<ManageUsers/>)},
+        { path: "/admin/reservations", element: (<ManageReservations/>)},
+    ];
 
-  return (
+
+    return (
     <>
         <Navigation/>
         <Routes>
@@ -35,15 +49,15 @@ function App() {
             <Route path="/registreer" element={<Register/>}/>
 
 
-            {/*{isAuth && user?.authority === 'ADMIN' && (*/}
-            {/*    <>*/}
-            {/*        <Route path="/admin/dashboard" element={<AdminDashboard />} />*/}
-            {/*        <Route path="/admin/mountainbikes" element={<ManageMountainbikes />} />*/}
-            {/*        <Route path="/admin/routes" element={<ManageRoutes/>} />*/}
-            {/*        <Route path="/admin/routes" element={<ManageUsers/>} />*/}
-            {/*        <Route path="/admin/bookings" element={<ManageBookings/>} />*/}
-            {/*    </>*/}
-            {/*)}*/}
+            {isAuth && userRole === 'ADMIN' &&(
+                <>
+                    {userRole === "ADMIN" && adminLinks.map(link => (
+                        <Route key={link.path} path={link.path} element={link.element} />
+                    ))}
+
+                    <Route path="/admin/*" element={<Navigate to="/" />} />
+                </>
+            )}
         </Routes>
         <Footer/>
     </>

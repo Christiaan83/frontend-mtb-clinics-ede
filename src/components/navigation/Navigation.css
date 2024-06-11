@@ -40,3 +40,31 @@ ul {
 .default-menu-link {
     border-bottom: 2px solid transparent;
 }
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: rgba(65, 109, 25, 0.3);
+    list-style: none;
+    padding-left: 8px;
+    width: 170px;
+    border-radius: 5px;
+    z-index: 10;
+
+}
+
+.dropdown-menu li {
+    text-align: left;
+    padding-top: 5px;
+}
+
+.dropdown-container ul li:last-child {
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-primary-light);
+}
