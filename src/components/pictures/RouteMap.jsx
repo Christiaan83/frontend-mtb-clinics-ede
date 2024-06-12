@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 // eslint-disable-next-line react/prop-types
-const RouteMap = ({ routeId }) => {
+const RouteMap = ({ routeId, className }) => {
     const [imageUrl, setImageUrl] = useState(null);
     const [enlarged, setEnlarged] = useState(false);
 
@@ -35,9 +35,9 @@ const RouteMap = ({ routeId }) => {
     return (
         <div>
             {imageUrl ? (
-                // eslint-disable-next-line react/prop-types
                 <img src={imageUrl} alt="Route"
-                     className={`route-image ${enlarged ? 'enlarged' : ''}`}
+
+                     className={`${className} route-image ${enlarged ? 'enlarged' : ''}`}
                      onClick={toggleEnlarged}/>
             ) : (
                 <p>Loading image...</p>
