@@ -1,6 +1,6 @@
 
 import './App.css'
-import {Navigate, Route, Routes,} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import Navigation from "./components/navigation/Navigation.jsx";
 import Home from "./pages/home/Home.jsx";
 import Footer from "./components/footer/Footer.jsx";
@@ -17,14 +17,21 @@ import ManageRoutes from "./pages/admin/ManageRoutes.jsx";
 import ManageMountainbikes from "./pages/admin/ManageMountainbikes.jsx";
 import ManageUsers from "./pages/admin/ManageUsers.jsx";
 import ManageReservations from "./pages/admin/ManageReservations.jsx";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {AuthContext} from "./context/AuthContext.jsx";
 import UpdateMtb from "./pages/admin/update/UpdateMtb.jsx";
 import NewMtb from "./pages/admin/new/NewMtb.jsx";
+import NewRoute from "./pages/admin/new/NewRoute.jsx";
+import UpdateRoute from "./pages/admin/update/UpdateRoute.jsx";
 
 
 
 function App() {
+    const location = useLocation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
 
     const {isAuth} = useContext(AuthContext);
     const userRole = getUserRole();
@@ -35,6 +42,8 @@ function App() {
         { path: "/admin/reservations", element: (<ManageReservations/>)},
         { path: "/admin/mountainbikes/toevoegen", element: (<NewMtb/>)},
         { path: `/admin/mountainbikes/update/:id`, element: (<UpdateMtb/>)},
+        { path: `/admin/routes/toevoegen`, element: (<NewRoute/>)},
+        { path: `/admin/routes/update/:id`, element: (<UpdateRoute/>)},
     ];
 
 
