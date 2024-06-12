@@ -1,9 +1,57 @@
 .admin-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
+/* ***** Table styles ***** */
+.table-route-map{
+    max-height: 100px;
+
+}
+.table-image{
+    max-width: 250px;
+}
+.table-content {
+    text-align: left;
+}
+
+.table-title {
+    margin-bottom: 20px;
+}
+
+.table-container {
+
+    overflow-x: auto;
+    margin: 20px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid lightgray;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.admin-table th {
+    background-color: var(--color-background-secondary);
+}
+
+.add-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+/* ***** Form styles ***** */
 
 .admin-form {
     background-color: var(--color-background-primary);
