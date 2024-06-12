@@ -1,0 +1,49 @@
+.admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.admin-form {
+    background-color: var(--color-background-primary);
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 40%;
+}
+
+.admin-form div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.admin-form label {
+    margin-bottom: 5px;
+}
+
+.admin-form input,
+.admin-form select {
+    padding: 6px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+
+}
+
+.admin-form button {
+    padding: 10px 15px;
+}
+
+.radio-group label {
+    margin-bottom: 5px;
+    padding-left: 5px;
+
+}
+
+.radio-group input[type="radio"] {
+    margin-left: 5px;
+    align-self: flex-start;
+    cursor: pointer;
+}
