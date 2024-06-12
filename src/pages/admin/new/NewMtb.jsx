@@ -3,9 +3,9 @@ import {useContext, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
 import getUserRole from "../../../helpers/getUserRole.jsx";
 import axios from "axios";
-import clinicHeader from "../../../assets/Mountainbike-trainings.png";
 import Header from "../../../components/header/Header.jsx";
 import {useNavigate} from "react-router-dom";
+import adminPic from "../../../assets/AdminPic.webp";
 
 
 function NewMtb() {
@@ -88,13 +88,13 @@ function NewMtb() {
         }
     }
 
-    const wheelSizes = ["20 inch", "24 inch", "26 inch", "28 inch", "29 inch"]; // Example wheel sizes
+    const wheelSizes = ["20 inch", "24 inch", "26 inch", "28 inch", "29 inch"];
     const frameSizes = ["small", "medium", "large", "extra-large"];
     const gearOptions = [8, 9, 10, 11, 12];
 
     return (
         <>
-            <Header img={clinicHeader} img_title="mtb-training" title="Nieuwe MTB Toevoegen"/>
+            <Header img={adminPic}  img_title="mtb-training" title="Nieuwe MTB Toevoegen"/>
 
             <section className="admin-container">
 

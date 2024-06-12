@@ -1,3 +1,4 @@
+import './Admin.css'
 import adminPic from "../../assets/AdminPic.webp";
 import Header from "../../components/header/Header.jsx";
 import {useContext, useEffect, useState} from "react";
@@ -11,14 +12,12 @@ import {Link} from "react-router-dom";
 function ManageMountainbikes() {
 
     const [mountainbikes, setMountainbikes] = useState([]);
-    const [enlarged, setEnlarged] = useState([]);
     const {isAuth} = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const userRole = getUserRole();
     const config = {
         headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json", Authorization: `Bearer ${token}`,
         },
     };
 
@@ -65,81 +64,77 @@ function ManageMountainbikes() {
 
     return (
         <>
-            <div>
-                <Header img={adminPic} img_title="bike-wheel" title="Admin-Mountainbikes"/>
+            <Header img={adminPic} img_title="bike-wheel" title="Admin-Mountainbikes"/>
 
-                <h2>Mountainbikes</h2>
+            <section className="admin-container">
+                <div className= "table-content">
+                    <h2 className="table-title" >Mountainbikes</h2>
 
-                <div>
-                    {isAuth && mountainbikes.length > 0 ? (
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Afbeelding</th>
-                                <th>Naam</th>
-                                <th>Wiel grootte</th>
-                                <th>Framemaat</th>
-                                <th>Versnellingen</th>
-                                <th>Volwassenen/Kind</th>
-                                <th>Volledig geveerd</th>
-                                <th>Beschikbaar</th>
-                                <th>Prijs</th>
-                                <th>Voorraad</th>
-                                <th>Aantal/Beschikbaar Aanpassen</th>
-                                {isAuth && userRole === "ADMIN" && (
-                                    <>
-                                        <th>Verwijderen</th>
-                                        <th>Afbeelding Downloaden</th>
-                                    </>
-                                )}
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {mountainbikes.map((mtb) => (
-                                <tr key={mtb.id}>
-                                    <td>
-                                        <MtbPicture mountainbike={mtb}/>
-                                    </td>
-                                    <td>{mtb.name}</td>
-                                    <td>{mtb.wheelSize}</td>
-                                    <td>{mtb.frameSize}</td>
-                                    <td>{mtb.gears}</td>
-                                    <td>{mtb.forAdult ? 'Volwassenen' : 'Kind'}</td>
-                                    <td>{mtb.fullSuspension ? 'Ja' : 'Nee'}</td>
-                                    <td>{mtb.available ? 'Ja' : 'Nee'}</td>
-                                    <td>€{mtb.pricePerDayPart},-</td>
-                                    <td>{mtb.amount}</td>
-                                    <td>
-                                        <button type="submit"><Link
-                                            to={`/admin/mountainbikes/update/${mtb.id}`}>Update MTB</Link>
-                                        </button>
-                                    </td>
-                                    <>
-                                        <td>
-                                            <button onClick={() => deleteMountainbike(mtb.id)}>
-                                                Verwijderen
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button onClick={() => downloadMtbPicture(mtb.id)}>
-                                                Afbeelding Downloaden
-                                            </button>
-                                        </td>
-                                    </>
+                    <div className="table-container">
+                        {isAuth && mountainbikes.length > 0 ? (
+                            <table className= "admin-table">
+                                <thead>
+                                <tr>
+                                    <th>Afbeelding</th>
+                                    <th>Naam</th>
+                                    <th>Wiel grootte</th>
+                                    <th>Framemaat</th>
+                                    <th>Versnellingen</th>
+                                    <th>Type</th>
+                                    <th>Vering</th>
+                                    <th>Beschikbaar</th>
+                                    <th>Prijs</th>
+                                    <th>Voorraad</th>
+                                    <th>Aanpassen</th>
+                                    {isAuth && userRole === "ADMIN" && (<>
+                                            <th>Verwijderen</th>
+                                            <th>Afbeelding</th>
+                                        </>)}
                                 </tr>
-                            ))}
-                            </tbody>
-                        </table>
-                    ) : (
-                        <p>Geen mountainbikes gevonden, probeer het opnieuw!</p>
-                    )}
+                                </thead>
+                                <tbody>
+                                {mountainbikes.map((mtb) => (<tr key={mtb.id}>
+                                        <td> <div className="table-image">
+                                            <MtbPicture mountainbike={mtb}/>
+                                        </div>
+                                        </td>
+                                        <td>{mtb.name}</td>
+                                        <td>{mtb.wheelSize}</td>
+                                        <td>{mtb.frameSize}</td>
+                                        <td>{mtb.gears}</td>
+                                        <td>{mtb.forAdult ? 'Volwassenen' : 'Kind'}</td>
+                                    <td>{mtb.fullSuspension === null ? 'geen' : (mtb.fullSuspension ? 'Volledig' : 'Voor')}</td>
+                                    <td>{mtb.available ? 'Ja' : 'Nee'}</td>
+                                    <td>€ {mtb.pricePerDayPart},-</td>
+                                        <td>{mtb.amount}</td>
+                                        <td>
+                                            <button type="submit"><Link
+                                                to={`/admin/mountainbikes/update/${mtb.id}`}>Update MTB</Link>
+                                            </button>
+                                        </td>
+                                        <>
+                                            <td>
+                                                <button onClick={() => deleteMountainbike(mtb.id)}>
+                                                    Verwijderen
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <button onClick={() => downloadMtbPicture(mtb.id)}>
+                                                    Downloaden
+                                                </button>
+                                            </td>
+                                        </>
+                                    </tr>))}
+                                </tbody>
+                            </table>) : (<p>Geen mountainbikes gevonden, probeer het opnieuw!</p>)}
+                    </div>
+                    <button type="submit" className="add-button">
+                        <Link
+                        to='/admin/mountainbikes/toevoegen'>Nieuwe MTB toevoegen</Link>
+                    </button>
                 </div>
-                <button type="submit"><Link
-                    to='/admin/mountainbikes/toevoegen'>Nieuwe MTB toevoegen</Link>
-                </button>
-            </div>
-        </>
-    );
+            </section>
+        </>);
 }
 
 export default ManageMountainbikes;
