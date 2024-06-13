@@ -25,6 +25,8 @@ import NewRoute from "./pages/admin/new/NewRoute.jsx";
 import UpdateRoute from "./pages/admin/update/UpdateRoute.jsx";
 import UpdateUserMtb from "./pages/admin/update/UpdateUserMTB.jsx";
 import UpdateUser from "./pages/admin/update/updateUser.jsx";
+import ContactForm from "./pages/contactForm/ContactForm.jsx";
+import ContactMessages from "./pages/admin/ContactMessages.jsx"
 
 
 
@@ -49,6 +51,7 @@ function App() {
         { path: `/admin/reservations`, element: (<ManageReservations/>)},
         { path: `/admin/users/update/:id`, element: (<UpdateUserMtb/>)},
         { path: `/admin/users/updates/:username`, element: (<UpdateUser/>)},
+        { path: `/admin/contact-form`, element: (<ContactMessages/>)},
 
     ];
 
@@ -66,6 +69,7 @@ function App() {
             <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
             <Route path="/mijnpagina" element={<Users/>}/>
             <Route path="/registreer" element={<Register/>}/>
+            <Route path="/contact" element={<ContactForm/>}/>
 
 
             {isAuth && userRole === 'ADMIN' &&(

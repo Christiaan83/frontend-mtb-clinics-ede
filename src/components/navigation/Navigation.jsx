@@ -37,6 +37,7 @@ function Navigation() {
         { label: "Routes beheren", to: "/admin/routes" },
         { label: "Reserveringen beheren", to: "admin/reservations"},
         { label: "Gebruikers beheren", to: "/admin/users" },
+        { label: "Website berichten", to: "/admin/contact-form" },
     ];
 
     return (
@@ -44,10 +45,12 @@ function Navigation() {
         <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
 
             <div className= 'nav-container'>
-                <h3><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                <h3><NavLink
                              to="/">MTB Clinics-Ede</NavLink></h3>
 
                 <ul>
+                    <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
+                                 to="/">Home</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}
                                  to="/mtb-clinics">MTB-clinics</NavLink></li>
                     <li><NavLink className={({isActive}) => isActive ? 'active-menu-link' : 'default-menu-link'}

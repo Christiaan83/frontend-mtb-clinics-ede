@@ -4,14 +4,17 @@
     justify-content: center;
     align-items: center;
 }
+
 /* ***** Table styles ***** */
-.table-route-map{
+.table-route-map {
     max-height: 100px;
 
 }
-.table-image{
+
+.table-image {
     max-width: 250px;
 }
+
 .table-content {
     text-align: left;
 }
@@ -51,6 +54,7 @@
     margin: 20px auto;
     padding: 10px 20px;
 }
+
 /* ***** Form styles ***** */
 
 .admin-form {
@@ -94,4 +98,9 @@
     margin-left: 5px;
     align-self: flex-start;
     cursor: pointer;
+}
+
+.form-info {
+    flex-basis: 100%;
+    text-align: left;
 }
