@@ -23,6 +23,8 @@ import UpdateMtb from "./pages/admin/update/UpdateMtb.jsx";
 import NewMtb from "./pages/admin/new/NewMtb.jsx";
 import NewRoute from "./pages/admin/new/NewRoute.jsx";
 import UpdateRoute from "./pages/admin/update/UpdateRoute.jsx";
+import UpdateUserMtb from "./pages/admin/update/UpdateUserMTB.jsx";
+import UpdateUser from "./pages/admin/update/updateUser.jsx";
 
 
 
@@ -44,6 +46,10 @@ function App() {
         { path: `/admin/mountainbikes/update/:id`, element: (<UpdateMtb/>)},
         { path: `/admin/routes/toevoegen`, element: (<NewRoute/>)},
         { path: `/admin/routes/update/:id`, element: (<UpdateRoute/>)},
+        { path: `/admin/reservations`, element: (<ManageReservations/>)},
+        { path: `/admin/users/update/:id`, element: (<UpdateUserMtb/>)},
+        { path: `/admin/users/updates/:username`, element: (<UpdateUser/>)},
+
     ];
 
 
