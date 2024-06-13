@@ -30,7 +30,6 @@ function ManageUsers() {
             setUnRegisteredUser(unregisteredResponse.data);
 
             const registeredResponse = await axios.get('http://localhost:8080/users', config);
-            console.log(registeredResponse.data);
             setRegisteredUser(registeredResponse.data);
 
 

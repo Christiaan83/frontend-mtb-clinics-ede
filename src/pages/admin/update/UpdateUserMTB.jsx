@@ -39,7 +39,7 @@ function UpdateUserMtb() {
                 setEmail(response.data.email);
 
             } catch (error) {
-                console.error('Error fetching mountainbike:', error);
+                console.error('Error fetching user:', error);
             }
         };
         fetchUser();
