@@ -56,7 +56,7 @@ function Home() {
                     </div>
                 </section>
                 <section className="home-blocks-section">
-                    <h2>Onze aangeboden opties</h2>
+                    <h2>Onze opties</h2>
                     <ul className='home-info-blocks'>
                         <li className='info-items'>
                             <Link to="/mtb-clinics">
