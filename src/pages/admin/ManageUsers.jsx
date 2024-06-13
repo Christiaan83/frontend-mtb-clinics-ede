@@ -6,8 +6,6 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../helpers/getUserRole.jsx";
 import axios from "axios";
 
-
-
 function ManageUsers() {
 
     const [registeredUser, setRegisteredUser] = useState([]);
