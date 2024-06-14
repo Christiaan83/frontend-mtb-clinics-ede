@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import {createContext, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import  {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
@@ -67,10 +67,12 @@ function AuthContextProvider({children}) {
     }
     try {
       await loginWithToken(jwtToken);
+
     } catch (error) {
       console.error(error);
     }
   };
+
 
   const logout = () => {
     toggleIsAuth({
@@ -80,7 +82,7 @@ function AuthContextProvider({children}) {
     });
     localStorage.removeItem("token");
     console.log("De gebruiker is uitgelogd 🔒");
-    navigate("/");
+    navigate("/", { state: { fromLogout: true } });
   };
 
   const data = {

@@ -157,10 +157,12 @@ function Users() {
             </section>
             <section  className="booking-blocks-container">
                 <div className="booking-blocks">
-                    <h3><u>Uw boekingen</u></h3>
+
                     {isAuth && (bookings.length > 0 ? (
                             bookings.map((booking) => (
+
                                 <div className="booking-block" key={booking.id}>
+                                    <h3><u>Uw boekingen</u></h3>
                                     <ul>
                                         <li>
                                             <h4>{booking.trainingDto?.name}</h4> {/* Use optional chaining */}

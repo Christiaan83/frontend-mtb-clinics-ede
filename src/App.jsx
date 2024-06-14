@@ -1,6 +1,6 @@
 
 import './App.css'
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
 import Navigation from "./components/navigation/Navigation.jsx";
 import Home from "./pages/home/Home.jsx";
 import Footer from "./components/footer/Footer.jsx";
@@ -9,18 +9,54 @@ import RouteDetails from "./pages/routeDetails/RouteDetails.jsx";
 import RentalPage from "./pages/mtbRental/RentalPage.jsx"
 import BookRentalPage from "./pages/bookRental/BookRentalPage.jsx";
 import MtbClinics from "./pages/mtbClinics/MtbClinics.jsx";
-import BookClinicPage from "./pages/BookClinic/BookClinicPage.jsx";
-import {AuthContext} from "./context/AuthContext.jsx";
-import {useContext} from "react";
+import BookClinicPage from "./pages/bookClinic/BookClinicPage.jsx";
 import Users from "./pages/Users/Users.jsx";
 import Register from "./pages/Users/Register.jsx";
+import getUserRole from "./helpers/getUserRole.jsx";
+import ManageRoutes from "./pages/admin/ManageRoutes.jsx";
+import ManageMountainbikes from "./pages/admin/ManageMountainbikes.jsx";
+import ManageUsers from "./pages/admin/ManageUsers.jsx";
+import ManageReservations from "./pages/admin/ManageReservations.jsx";
+import {useContext, useEffect} from "react";
+import {AuthContext} from "./context/AuthContext.jsx";
+import UpdateMtb from "./pages/admin/update/UpdateMtb.jsx";
+import NewMtb from "./pages/admin/new/NewMtb.jsx";
+import NewRoute from "./pages/admin/new/NewRoute.jsx";
+import UpdateRoute from "./pages/admin/update/UpdateRoute.jsx";
+import UpdateUserMtb from "./pages/admin/update/UpdateUserMTB.jsx";
+import UpdateUser from "./pages/admin/update/updateUser.jsx";
+import ContactForm from "./pages/contactForm/ContactForm.jsx";
+import ContactMessages from "./pages/admin/ContactMessages.jsx"
+
 
 
 function App() {
+    const location = useLocation();
 
-    const {isAuth, user } = useContext(AuthContext);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location]);
 
-  return (
+    const {isAuth} = useContext(AuthContext);
+    const userRole = getUserRole();
+    const adminLinks = [
+        { path: "/admin/mountainbikes", element: (<ManageMountainbikes/>)},
+        { path: "/admin/routes", element: (<ManageRoutes/>)},
+        { path: "/admin/users", element: (<ManageUsers/>)},
+        { path: "/admin/reservations", element: (<ManageReservations/>)},
+        { path: "/admin/mountainbikes/toevoegen", element: (<NewMtb/>)},
+        { path: `/admin/mountainbikes/update/:id`, element: (<UpdateMtb/>)},
+        { path: `/admin/routes/toevoegen`, element: (<NewRoute/>)},
+        { path: `/admin/routes/update/:id`, element: (<UpdateRoute/>)},
+        { path: `/admin/reservations`, element: (<ManageReservations/>)},
+        { path: `/admin/users/update/:id`, element: (<UpdateUserMtb/>)},
+        { path: `/admin/users/updates/:username`, element: (<UpdateUser/>)},
+        { path: `/admin/contact-form`, element: (<ContactMessages/>)},
+
+    ];
+
+
+    return (
     <>
         <Navigation/>
         <Routes>
@@ -33,17 +69,18 @@ function App() {
             <Route path="/mtb-verhuur/:id" element={<BookRentalPage/>}/>
             <Route path="/mijnpagina" element={<Users/>}/>
             <Route path="/registreer" element={<Register/>}/>
+            <Route path="/contact" element={<ContactForm/>}/>
 
 
-            {/*{isAuth && user?.authority === 'ADMIN' && (*/}
-            {/*    <>*/}
-            {/*        <Route path="/admin/dashboard" element={<AdminDashboard />} />*/}
-            {/*        <Route path="/admin/mountainbikes" element={<ManageMountainbikes />} />*/}
-            {/*        <Route path="/admin/routes" element={<ManageRoutes/>} />*/}
-            {/*        <Route path="/admin/routes" element={<ManageUsers/>} />*/}
-            {/*        <Route path="/admin/bookings" element={<ManageBookings/>} />*/}
-            {/*    </>*/}
-            {/*)}*/}
+            {isAuth && userRole === 'ADMIN' &&(
+                <>
+                    {userRole === "ADMIN" && adminLinks.map(link => (
+                        <Route key={link.path} path={link.path} element={link.element} />
+                    ))}
+
+                    <Route path="/admin/*" element={<Navigate to="/" />} />
+                </>
+            )}
         </Routes>
         <Footer/>
     </>
