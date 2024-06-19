@@ -20,23 +20,18 @@ Deze full-stack applicatie is ontworpen om het beheer van mountainbike clinics e
 
 ## Installatie en Gebruik
 
-### 1.Database Setup:
-
-+ Installeer en open PgAdmin 4.
-+ Maak een nieuwe database aan (bijv. mtb_clinic_db).
-+ Noteer de databasegegevens (naam, gebruikersnaam, wachtwoord).
-
-### 2.Backend Setup:
-
-+ Open het project in IntelliJ IDEA.
-+ Pas de databasegegevens aan in application.properties.
-+ Bouw en run het project.
-
-### 3.Frontend Setup:
+### Frontend Setup:
 
 + Open het project in WebStorm.
 + Installeer de dependencies met npm install.
 +Start de development server met npm start.
+
+### Backend:
+
++ Clone de backend git repository naar je backend IDE
++ Volge instructies van de backend readme
++ Link naar de front end repository: https://github.com/Christiaan83/MtbClinicsApplication
+  
 
 ## API Endpoints
 Zie documentatie in Endpionts.pdf voor een volledige lijst van alle beschikbare endpoints.
