@@ -32,6 +32,3 @@ Deze full-stack applicatie is ontworpen om het beheer van mountainbike clinics e
 + Volge instructies van de backend readme
 + Link naar de front end repository: https://github.com/Christiaan83/MtbClinicsApplication
   
-
-## API Endpoints
-Zie documentatie in Endpionts.pdf voor een volledige lijst van alle beschikbare endpoints.
