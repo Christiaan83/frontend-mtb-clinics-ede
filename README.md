@@ -22,9 +22,9 @@ Deze full-stack applicatie is ontworpen om het beheer van mountainbike clinics e
 
 ### Frontend Setup:
 
-+ Open het project in WebStorm.
++ Clone naar je front-end IDE (bv. Webstorm)
 + Installeer de dependencies met npm install.
-+Start de development server met npm start.
++ Start de development server met npm start.
 
 ### Backend:
 
