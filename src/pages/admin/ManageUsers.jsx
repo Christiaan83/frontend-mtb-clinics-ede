@@ -5,11 +5,13 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../helpers/getUserRole.jsx";
 import axios from "axios";
+import {Helmet} from "react-helmet";
 
 function ManageUsers() {
 
     const [registeredUser, setRegisteredUser] = useState([]);
     const [unRegisteredUser, setUnRegisteredUser] = useState([]);
+    const [error, setError] = useState(false);
     const {isAuth} = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const userRole = getUserRole();
@@ -44,6 +46,7 @@ function ManageUsers() {
             await fetchUsers();
         } catch (error) {
             console.error('Error deleting unregistered user:', error);
+            setError(true);
         }
     };
 
@@ -53,11 +56,17 @@ function ManageUsers() {
             await fetchUsers();
         } catch (error) {
             console.error('Error deleting unregistered user:', error);
+            setError(true);
         }
     };
 
     return (
         <>
+            <div>
+                <Helmet>
+                    <title>MTB Clinics-Ede | Admin</title>
+                </Helmet>
+            </div>
             <Header img={adminPic} img_title="bike-wheel" title="Admin-gebruikers"/>
 
             <section className="admin-container">
@@ -65,6 +74,11 @@ function ManageUsers() {
                     <h2 className="table-title">Gebruikers</h2>
 
                     <div className="table-container">
+                        {error && (
+                            <p className="text-danger">
+                                Aub eerst de reservering van de gebruiker verwijderen voordat u verder kunt gaan.
+                            </p>
+                        )}
                         {isAuth && userRole === "ADMIN" && (registeredUser.length > 0 || unRegisteredUser.length > 0) ? (
                             <>
                                 {unRegisteredUser.length > 0 && (

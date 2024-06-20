@@ -5,6 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../helpers/getUserRole.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
+import {Helmet} from "react-helmet";
 
 
 function ManageReservations() {
@@ -67,6 +68,11 @@ function ManageReservations() {
 
     return (
         <>
+            <div>
+                <Helmet>
+                    <title>MTB Clinics-Ede | Admin</title>
+                </Helmet>
+            </div>
             <Header img={adminPic} img_title="bike-wheel" title="Admin-reserveringen"/>
             <section className="admin-container">
                 <div className="table-content">

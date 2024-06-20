@@ -7,6 +7,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../helpers/getUserRole.jsx";
 import {Link} from "react-router-dom";
 import RouteMap from "../../components/pictures/RouteMap.jsx";
+import {Helmet} from "react-helmet";
 
 function ManageRoutes() {
     const [routes, setRoutes] = useState([]);
@@ -62,6 +63,11 @@ function ManageRoutes() {
 
         return (
             <>
+                <div>
+                    <Helmet>
+                        <title>MTB Clinics-Ede | Admin</title>
+                    </Helmet>
+                </div>
                 <Header img={adminPic} img_title="bike-wheel" title="Admin-Routes"/>
 
                 <section className="admin-container">
@@ -83,50 +89,51 @@ function ManageRoutes() {
                                         <th>Beschikbaar</th>
                                         {isAuth && userRole === "ADMIN" && (
                                             <>
-                                            <th>Aanpassen</th>
-                                            <th>Verwijderen</th>
-                                            <th>Afbeelding</th>
-                                        </>
+                                                <th>Aanpassen</th>
+                                                <th>Verwijderen</th>
+                                                <th>Afbeelding</th>
+                                            </>
                                         )}
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {routes.map((route) => (
                                         <tr key={route.id}>
-                                        <td><div>
-                                            {<RouteMap routeId={route.id} className= "table-route-map"
-                                            />}
-                                        </div>
-                                        </td>
-                                        <td>{route.name}</td>
-                                        <td>{route.routeType}</td>
-                                        <td>{route.difficulty}</td>
-                                        <td>{route.place}</td>
-                                        <td>{route.province}</td>
-                                        <td>{route.distance}</td>
-                                        <td>{route.available ? 'ja' : 'nee'}</td>
+                                            <td>
+                                                <div>
+                                                    {<RouteMap routeId={route.id} className="table-route-map"
+                                                    />}
+                                                </div>
+                                            </td>
+                                            <td>{route.name}</td>
+                                            <td>{route.routeType}</td>
+                                            <td>{route.difficulty}</td>
+                                            <td>{route.place}</td>
+                                            <td>{route.province}</td>
+                                            <td>{route.distance}</td>
+                                            <td>{route.available ? 'ja' : 'nee'}</td>
 
                                             {isAuth && userRole === "ADMIN" && (
                                                 <>
-                                            <td>
-                                            <button type="submit"><Link
-                                                to={`/admin/routes/update/${route.id}`}>Update route</Link>
-                                            </button>
-                                        </td>
+                                                    <td>
+                                                        <button type="submit"><Link
+                                                            to={`/admin/routes/update/${route.id}`}>Update route</Link>
+                                                        </button>
+                                                    </td>
 
-                                            <td>
-                                                <button onClick={() => deleteRoute(route.id)}>
-                                                    Verwijderen
-                                                </button>
-                                            </td>
-                                            <td>
-                                                <button onClick={() => downloadRoutePicture(route.id)}>
-                                                    Downloaden
-                                                </button>
-                                            </td>
-                                        </>
+                                                    <td>
+                                                        <button onClick={() => deleteRoute(route.id)}>
+                                                            Verwijderen
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button onClick={() => downloadRoutePicture(route.id)}>
+                                                            Downloaden
+                                                        </button>
+                                                    </td>
+                                                </>
                                             )}
-                                    </tr>
+                                        </tr>
                                     ))}
                                     </tbody>
                                 </table>
@@ -142,6 +149,6 @@ function ManageRoutes() {
                 </section>
             </>
         );
-    }
+}
 
-    export default ManageRoutes;
+export default ManageRoutes;

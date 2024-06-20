@@ -103,3 +103,9 @@
     flex-basis: 100%;
     text-align: left;
 }
+
+.text-danger{
+    color: red;
+    text-align: center;
+    font-style: italic;
+}

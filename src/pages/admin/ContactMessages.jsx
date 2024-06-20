@@ -5,6 +5,7 @@ import adminPic from "../../assets/AdminPic.webp";
 import Header from "../../components/header/Header.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../helpers/getUserRole.jsx";
+import {Helmet} from "react-helmet";
 
 
 function ContactMessages() {
@@ -46,6 +47,11 @@ function ContactMessages() {
     };
     return (
         <>
+            <div>
+                <Helmet>
+                    <title>MTB Clinics-Ede | Admin</title>
+                </Helmet>
+            </div>
             <Header img={adminPic} img_title="bike-wheel" title="Website berichten"/>
             <main>
                 <section className="outer-content-container">
