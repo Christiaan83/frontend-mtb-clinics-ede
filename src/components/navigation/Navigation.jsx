@@ -60,7 +60,6 @@ function Navigation() {
 
                     {isAuth && userRole === 'ADMIN' && (
                         <li className="dropdown-container" ref={dropdownRef}>
-                            {/* Main Admin Dashboard link */}
                             <NavLink
                                 className={`default-menu-link ${isDropdownOpen ? 'active-menu-link' : ''}`}
                                 to="#"

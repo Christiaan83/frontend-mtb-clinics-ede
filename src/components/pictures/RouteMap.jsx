@@ -16,7 +16,7 @@ const RouteMap = ({ routeId, className }) => {
                 const newImageUrl = URL.createObjectURL(response.data);
                 setImageUrl(newImageUrl);
             } catch (err) {
-                console.error("Kan afbeelding niet ophalen");
+                console.error("No picture found for route", err);
             }
         };
 
