@@ -42,9 +42,9 @@ function Register() {
         } catch (e) {
             console.error(e);
             if (e.response && e.response.status === 409) {
-                toggleError("Dit account bestaat al. Probeer een ander gebruikersnaam of e-mailadres.");
+                toggleError("This account already exists!, try another username.");
             } else {
-                toggleError("Er is een fout opgetreden tijdens het registreren.");
+                toggleError("Something went wrong. Try again.");
             }
         } finally {
             toggleLoading(false);

@@ -35,13 +35,12 @@ const RentalForm = ( ) => {
             const rentalDuration = (endDateTime.getTime() - startDateTime.getTime()) / (1000 * 60 * 60);
             const isRentingWholeDay = rentalDuration > 4;
 
-            const response = await axios.post(`http://localhost:8080/rentals`, {
+             await axios.post(`http://localhost:8080/rentals`, {
                 startDate: selectedDate,
                 startTime: selectedStartTime,
                 endTime: selectedEndTime,
                 rentingWholeDay: isRentingWholeDay,
             });
-            const rentalId = response.data.id;
 
             setStartDate('');
             setStartTime('');
@@ -55,25 +54,6 @@ const RentalForm = ( ) => {
         }
 
     };
-    // const handleDateChange = (e) => {
-    //     const selectedDate = e.target.value;
-    //
-    //     const dateObject = new Date(selectedDate);
-    //     const oneYearFromNow = new Date();
-    //     oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
-    //
-    //     const dayOfWeek = dateObject.getDay();
-    //     const isValidDay = dayOfWeek === 5 || dayOfWeek === 6 || dayOfWeek === 0;
-    //     const isFutureNextYear = dateObject <= oneYearFromNow;
-    //
-    //     if (!isFutureNextYear || !isValidDay) {
-    //         setError('Je kunt alleen een datum kiezen in de toekomst op de vrijdag, zaterdag of zondag.');
-    //         return;
-    //     }
-    //
-    //     setStartDate(selectedDate);
-    //     setError(null);
-    // };
 
         return (
             <>
