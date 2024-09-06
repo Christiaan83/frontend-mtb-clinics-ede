@@ -24,11 +24,11 @@ Deze full-stack applicatie is ontworpen om het beheer van mountainbike clinics e
 
 + Clone naar je front-end IDE (bv. Webstorm)
 + Installeer de dependencies met npm install.
-+ Start de development server met npm start.
++ Start de development server met npm run dev.
 
 ### Backend:
 
 + Clone de backend git repository naar je backend IDE
 + Volge instructies van de backend readme
-+ Link naar de front end repository: https://github.com/Christiaan83/MtbClinicsApplication
++ Link naar de backend repository: https://github.com/Christiaan83/MtbClinicsApplication
   
