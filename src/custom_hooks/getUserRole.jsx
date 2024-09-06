@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
-import getDecodedToken from "./getDecodedToken.jsx";
+import getDecodedToken from "../helpers/getDecodedToken.jsx";
 import {AuthContext} from "../context/AuthContext.jsx";
 
 

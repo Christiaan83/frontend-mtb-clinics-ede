@@ -9,7 +9,7 @@ import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import changeDifficultyName from "../../helpers/changeDifficultyName.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
-import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import HandleDateChange from "../../custom_hooks/handleDateChange.jsx";
 import difficultyName from "../../helpers/changeDifficultyName.jsx";
 import getDecodedToken from "../../helpers/getDecodedToken.jsx";
 

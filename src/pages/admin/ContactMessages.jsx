@@ -4,7 +4,7 @@ import axios from "axios";
 import adminPic from "../../assets/AdminPic.webp";
 import Header from "../../components/header/Header.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {Helmet} from "react-helmet";
 
 

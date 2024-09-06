@@ -3,7 +3,7 @@ import adminPic from "../../../assets/AdminPic.webp";
 import axios from "axios";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
-import getUserRole from "../../../helpers/getUserRole.jsx";
+import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import MtbPicture from "../../../components/pictures/MtbPicture.jsx";
 

@@ -4,7 +4,7 @@ import Header from "../../components/header/Header.jsx";
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
