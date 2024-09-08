@@ -52,12 +52,6 @@
     margin: 5px;
 }
 
-.booking-button{
-    width: 200px;
-    background-color: var(--color-primary);
-}
-
-
 .back-to-links{
     display: flex;
     width: 400px;
