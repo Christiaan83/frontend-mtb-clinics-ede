@@ -1,0 +1,26 @@
+.button-dark, .button-light:hover {
+    cursor: pointer;
+}
+
+.button-dark, .button-light {
+    font-family: inherit;
+    color: var(--color-white);
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    margin: 10px 0 10px 0 ;
+    border-radius: 4px;
+    display: inline-block;
+    min-width: 130px;
+    height: auto;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.button-light {
+    background-color: var(--color-secondary);
+}
+
+.button-dark {
+    background-color: var(--color-primary);
+}
