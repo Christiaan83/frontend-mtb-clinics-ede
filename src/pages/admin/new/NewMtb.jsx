@@ -6,6 +6,7 @@ import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import {useNavigate} from "react-router-dom";
 import adminPic from "../../../assets/AdminPic.webp";
+import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
 
 
 function NewMtb() {
@@ -245,7 +246,10 @@ function NewMtb() {
                             <input type="file" onChange={(e) => setImageFile(e.target.files[0])}
                                    required/>
                         </div>
-                        <button type="submit">Mountainbike Toevoegen</button>
+                        <ButtonLightGreen
+                            type="submit"
+                            text="Mountainbike toevoegen"
+                        />
                     </form>
                 )}
             </section>

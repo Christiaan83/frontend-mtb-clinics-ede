@@ -7,6 +7,7 @@ import Header from "../../components/header/Header.jsx";
 import headerPic from "../../assets/Header1.png";
 import getDecodedToken from "../../helpers/getDecodedToken.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 function Users() {
     const [username, setUsername] = useState('');
@@ -126,21 +127,19 @@ function Users() {
                         {error && <p className="error">Combinatie van emailadres en wachtwoord is onjuist</p>}
                         {success && <p className="success">Succesvol ingelogd!</p>}
 
-                        <button
+                        <ButtonLightGreen
                             type="submit"
-                            className="form-button"
-                        >Inloggen
-                        </button>
+                            text="Inloggen"
+                        />
 
                         <h5>Heb je nog geen account? Registreer je dan <Link className="link"
                                                                              to="/registreer">hier</Link>. </h5>
-                    </form>) : (<button
-                        type="button"
-                        className="form-button"
-                        onClick={handleLogout}
-                    >
-                        Uitloggen
-                    </button>)}
+                    </form>) : (
+                        <ButtonLightGreen
+                            type="button"
+                            onClick={handleLogout}
+                            text="Uitloggen"
+                        />)}
                 </div>
             </section>
 

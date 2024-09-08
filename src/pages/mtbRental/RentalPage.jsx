@@ -9,6 +9,7 @@ import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import {Link} from "react-router-dom";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx"
 import rentalInfo from "../../assets/verhuurInfo.jpg";
+import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
 
 
 function RentalPage() {
@@ -127,7 +128,10 @@ function RentalPage() {
                                     <option value="false">Voorvering</option>
                                 </select>
                         </div>
-                                <button type="submit" className="button">Zoeken</button>
+                        <ButtonDarkGreen
+                            type="submit"
+                            text="Zoeken"
+                        />
                     </form>
                     </div>
                     {error && <p>Error fetching mountain bikes</p>}
@@ -152,9 +156,12 @@ function RentalPage() {
                                         <br/>
 
                                     </li>
-                                    <button className="booking-button" type="submit"><Link
-                                        to={`/mtb-verhuur/${mtb.id}`}>Reserveer mountainbike</Link>
-                                    </button>
+                                    <Link to={`/mtb-verhuur/${mtb.id}`}>
+                                        <ButtonDarkGreen
+                                            type="submit"
+                                            text="Reserveer mountainbike"
+                                        />
+                                    </Link>
                                 </ul>)}
                             </div>) : (<p>Geen Mountainbike gevonden, probeer het opnieuw.</p>)}
                     </section>

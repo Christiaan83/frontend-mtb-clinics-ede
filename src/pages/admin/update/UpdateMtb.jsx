@@ -6,6 +6,7 @@ import {AuthContext} from "../../../context/AuthContext.jsx";
 import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import {useNavigate, useParams} from "react-router-dom";
 import MtbPicture from "../../../components/pictures/MtbPicture.jsx";
+import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
 
 
 function UpdateMtb() {
@@ -141,7 +142,10 @@ function UpdateMtb() {
                                                     />
                                                 </div>
                                             </div>
-                                            <button type="submit">Mountainbike Aanpassen</button>
+                                            <ButtonLightGreen
+                                                type="submit"
+                                                text="Mountainbike Aanpassen"
+                                            />
                                             {error && <p className="error-message">{error}</p>}
                                         </form>
                                     )}

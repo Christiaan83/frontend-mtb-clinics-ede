@@ -6,6 +6,7 @@ import Header from "../../components/header/Header.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {Helmet} from "react-helmet";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 
 function ContactMessages() {
@@ -80,9 +81,10 @@ function ContactMessages() {
                                             </div>
                                             <br/>
                                             <div>
-                                                <button onClick={() => deleteForm(form.id)}>
-                                                    Bericht verwijderen
-                                                </button>
+                                                <ButtonLightGreen
+                                                    onClick={() => deleteForm(form.id)}
+                                                                  text="Bericht verwijderen"
+                                                />
                                             </div>
                                             <p></p>
                                         </li>

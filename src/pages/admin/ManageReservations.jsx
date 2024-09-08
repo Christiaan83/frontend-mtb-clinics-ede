@@ -6,6 +6,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
 import {Helmet} from "react-helmet";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 
 function ManageReservations() {
@@ -107,8 +108,10 @@ function ManageReservations() {
                                                     <td>{rental.unregisteredUserDto?.email || 'N/A'}</td>
                                                     <td>0{rental.unregisteredUserDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <button onClick={() => deleteRental(rental.id)}>Verwijderen
-                                                        </button>
+                                                        <ButtonLightGreen
+                                                            onClick={() => deleteRental(rental.id)}
+                                                            text="Verwijderen"
+                                                        />
                                                     </td>
                                                 </tr>
                                             ))}
@@ -147,8 +150,10 @@ function ManageReservations() {
                                                     <td>{booking.userDto?.email || 'N/A'}</td>
                                                     <td>0{booking.userDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <button onClick={() => deleteBooking(booking.id)}>Verwijderen
-                                                        </button>
+                                                        <ButtonLightGreen
+                                                            onClick={() => deleteBooking(booking.id)}
+                                                            text="Verwijderen"
+                                                        />
                                                     </td>
                                                 </tr>
                                             ))}

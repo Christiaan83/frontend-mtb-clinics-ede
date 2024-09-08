@@ -8,6 +8,7 @@ import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {Link} from "react-router-dom";
 import RouteMap from "../../components/pictures/RouteMap.jsx";
 import {Helmet} from "react-helmet";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 function ManageRoutes() {
     const [routes, setRoutes] = useState([]);
@@ -116,20 +117,28 @@ function ManageRoutes() {
                                             {isAuth && userRole === "ADMIN" && (
                                                 <>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/routes/update/${route.id}`}>Update route</Link>
-                                                        </button>
+                                                        <Link
+                                                            to={`/admin/routes/update/${route.id}`}>
+                                                            <ButtonLightGreen
+                                                            type="submit"
+                                                            text="Update route"
+                                                            />
+                                                        </Link>
+
                                                     </td>
 
                                                     <td>
-                                                        <button onClick={() => deleteRoute(route.id)}>
-                                                            Verwijderen
-                                                        </button>
+                                                        <ButtonLightGreen
+                                                            onClick={() => deleteRoute(route.id)}
+                                                            text="Verwijderen"
+
+                                                        />
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => downloadRoutePicture(route.id)}>
-                                                            Downloaden
-                                                        </button>
+                                                        <ButtonLightGreen
+                                                            onClick={() => downloadRoutePicture(route.id)}
+                                                            text="Downloaden"
+                                                        />
                                                     </td>
                                                 </>
                                             )}
@@ -141,10 +150,12 @@ function ManageRoutes() {
                                 <p>Geen routes gevonden, probeer het opnieuw!</p>
                             )}
                         </div>
-                        <button type="submit" className="add-button">
-                            <Link
-                                to='/admin/routes/toevoegen'>Nieuwe Route toevoegen</Link>
-                        </button>
+                        <Link className="add-button"
+                              to='/admin/routes/toevoegen'>
+                            <ButtonLightGreen
+                                type="submit"
+                                text="Nieuwe Route toevoegen"
+                            /></Link>
                     </div>
                 </section>
             </>

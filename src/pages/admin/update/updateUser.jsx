@@ -5,6 +5,7 @@ import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import adminPic from "../../../assets/AdminPic.webp";
+import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
 
 
 function UpdateUser() {
@@ -178,7 +179,12 @@ function UpdateUser() {
                                                     />
                                                 </div>
                                             </div>
-                                            <button type="submit">Gebruiker Aanpassen</button>
+
+                                            <ButtonLightGreen
+                                                type="submit"
+                                                text="Gebruiker Aanpassen"
+                                            />
+
                                             {error && <p className="error-message">{error}</p>}
                                         </form>
                                     )}

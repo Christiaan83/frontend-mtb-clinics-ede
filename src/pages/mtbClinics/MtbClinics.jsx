@@ -8,6 +8,7 @@ import difficultyName from "../../helpers/changeDifficultyName.jsx";
 import {Link} from "react-router-dom";
 import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
+import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
 
 
 function MtbClinics() {
@@ -77,9 +78,12 @@ return (
                                 <p>Groepstraining: {clinics.trainingInGroup ? 'Ja' : 'Nee'}</p>
                                 <br/>
                             </li>
-                            <button className="button" type="submit"><Link to={`/mtb-clinics/${clinics.id}`}>Boek
-                                deze clinic</Link>
-                            </button>
+                            <Link to={`/mtb-clinics/${clinics.id}`}>
+                            <ButtonDarkGreen
+                                type="submit"
+                                text="Boek deze clinic"
+                            />
+                            </Link>
                         </ul>)
                     }
                     {error && <p className="error-message">Er is iets fout gegaan probeer opnieuw!</p>}

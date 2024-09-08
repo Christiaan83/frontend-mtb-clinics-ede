@@ -8,6 +8,7 @@ import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 
 function ManageMountainbikes() {
@@ -124,18 +125,26 @@ function ManageMountainbikes() {
                                     <td>€ {mtb.pricePerDayPart},-</td>
                                     <td>{mtb.amount}</td>
                                     <td>
-                                        <button type="submit"><Link
-                                            to={`/admin/mountainbikes/update/${mtb.id}`}>Update MTB</Link>
-                                        </button>
+                                        <Link
+                                            to={`/admin/mountainbikes/update/${mtb.id}`}>
+                                            <ButtonLightGreen
+                                                type="submit"
+                                                text="Update MTB"
+                                            /></Link>
                                     </td>
                                     <>
                                         <td key={mtb.id}>
-                                            <button disabled={error}
-                                                    onClick={() => deleteMountainbike(mtb.id)}>Verwijderen
-                                            </button>
+                                            <ButtonLightGreen
+                                                    disabled={error}
+                                                    onClick={() => deleteMountainbike(mtb.id)}
+                                                    text="Verwijderen"
+                                            />
                                         </td>
                                         <td>
-                                            <button onClick={() => downloadMtbPicture(mtb.id)}>Downloaden</button>
+                                            <ButtonLightGreen
+                                                onClick={() => downloadMtbPicture(mtb.id)}
+                                                text="Downloaden"
+                                            />
                                         </td>
 
                                     </>
@@ -143,10 +152,12 @@ function ManageMountainbikes() {
                                 </tbody>
                             </table>) : (<p>Geen mountainbikes gevonden, probeer het opnieuw!</p>)}
                     </div>
-                    <button type="submit" className="add-button">
-                        <Link
-                            to='/admin/mountainbikes/toevoegen'>Nieuwe MTB toevoegen</Link>
-                    </button>
+                    <Link className="add-button"
+                        to='/admin/mountainbikes/toevoegen'>
+                        <ButtonLightGreen
+                            type="submit"
+                            text="Nieuwe MTB toevoegen"
+                        /></Link>
                 </div>
             </section>
         </>);

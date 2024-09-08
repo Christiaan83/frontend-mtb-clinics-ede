@@ -12,6 +12,7 @@ import {formatTime} from "../../helpers/formatTime.jsx";
 import HandleDateChange from "../../custom_hooks/handleDateChange.jsx";
 import difficultyName from "../../helpers/changeDifficultyName.jsx";
 import getDecodedToken from "../../helpers/getDecodedToken.jsx";
+import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
 
 
 function BookClinicPage() {
@@ -166,7 +167,11 @@ function BookClinicPage() {
                                 </form>
                             </label>
 
-                            <button className="button" onClick={handleBooking}>Boeken</button>
+                                <ButtonDarkGreen
+                                    type="submit"
+                                    onClick={handleBooking}
+                                    text="Boeken"
+                                />
                         </div>
                     </form>) : (<p><Link className="link" to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>)}
 

@@ -6,6 +6,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import {Helmet} from "react-helmet";
+import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
 
 function ManageUsers() {
 
@@ -102,15 +103,18 @@ function ManageUsers() {
                                                     <td>{user.email}</td>
                                                     <td>{user.mobileNumber}</td>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/users/update/${user.id}`}>Update
-                                                            Gebruiker</Link>
-                                                        </button>
+                                                        <Link to={`/admin/users/update/${user.id}`}>
+                                                            <ButtonLightGreen
+                                                                type="submit"
+                                                                text="Update gebruiker"
+                                                            />
+                                                        </Link>
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => deleteUnregisteredUser(user.id)}>
-                                                            Verwijderen
-                                                        </button>
+                                                        <ButtonLightGreen onClick={() => deleteUnregisteredUser(user.id)}
+                                                        text="Verwijderen"
+                                                        />
+
                                                     </td>
                                                 </tr>
                                             ))}
@@ -150,15 +154,17 @@ function ManageUsers() {
                                                 </span>
                                                     ))}</td>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/users/updates/${userUser.username}`}>Update
-                                                            Gebruiker</Link>
-                                                        </button>
+                                                        <Link to={`/admin/users/updates/${userUser.username}`}>
+                                                            <ButtonLightGreen
+                                                                type="submit"
+                                                                text="Update gebruiker"
+                                                            />
+                                                        </Link>
                                                     </td>
                                                     <td>
-                                                        <button
-                                                            onClick={() => deleteRegisteredUser(userUser.username)}>Verwijderen
-                                                        </button>
+                                                        <ButtonLightGreen
+                                                            onClick={() => deleteRegisteredUser(userUser.username)}
+                                                        text="Verwijderen"/>
                                                     </td>
                                                 </tr>
                                             ))}
