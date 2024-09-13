@@ -8,7 +8,7 @@ import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
-import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ManageMountainbikes() {
@@ -127,22 +127,25 @@ function ManageMountainbikes() {
                                     <td>
                                         <Link
                                             to={`/admin/mountainbikes/update/${mtb.id}`}>
-                                            <ButtonLightGreen
+                                            <Button
                                                 type="submit"
+                                                className='button-light'
                                                 text="Update MTB"
                                             /></Link>
                                     </td>
                                     <>
                                         <td key={mtb.id}>
-                                            <ButtonLightGreen
+                                            <Button
                                                     disabled={error}
                                                     onClick={() => deleteMountainbike(mtb.id)}
+                                                    className='button-light'
                                                     text="Verwijderen"
                                             />
                                         </td>
                                         <td>
-                                            <ButtonLightGreen
+                                            <Button
                                                 onClick={() => downloadMtbPicture(mtb.id)}
+                                                className='button-light'
                                                 text="Downloaden"
                                             />
                                         </td>
@@ -154,8 +157,9 @@ function ManageMountainbikes() {
                     </div>
                     <Link className="add-button"
                         to='/admin/mountainbikes/toevoegen'>
-                        <ButtonLightGreen
+                        <Button
                             type="submit"
+                            className='button-light'
                             text="Nieuwe MTB toevoegen"
                         /></Link>
                 </div>

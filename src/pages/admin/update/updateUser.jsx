@@ -5,7 +5,7 @@ import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import adminPic from "../../../assets/AdminPic.webp";
-import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function UpdateUser() {
@@ -180,8 +180,9 @@ function UpdateUser() {
                                                 </div>
                                             </div>
 
-                                            <ButtonLightGreen
+                                            <Button
                                                 type="submit"
+                                                className='button-light'
                                                 text="Gebruiker Aanpassen"
                                             />
 

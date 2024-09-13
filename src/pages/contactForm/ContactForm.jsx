@@ -5,7 +5,7 @@ import axios from "axios";
 import Header from "../../components/header/Header.jsx";
 import headerPic from "../../assets/Header1.png";
 import InputMask from "react-input-mask";
-import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ContactForm() {
@@ -112,9 +112,10 @@ function ContactForm() {
                     <div>
                         {error && <p>Er is iets mis gegaan Probeer het later opnieuw</p>}
                         {success && <p>Het bericht is succesvol verzonden</p>}
-                        <ButtonLightGreen
+                        <Button
                             type="submit"
                             onClick={handleContactForm}
+                            className='button-light'
                             text="Laat een bericht achter"
                         />
                     </div>

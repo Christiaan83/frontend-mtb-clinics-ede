@@ -6,7 +6,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
 import {Helmet} from "react-helmet";
-import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ManageReservations() {
@@ -108,8 +108,9 @@ function ManageReservations() {
                                                     <td>{rental.unregisteredUserDto?.email || 'N/A'}</td>
                                                     <td>0{rental.unregisteredUserDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <ButtonLightGreen
+                                                        <Button
                                                             onClick={() => deleteRental(rental.id)}
+                                                            className='button-light'
                                                             text="Verwijderen"
                                                         />
                                                     </td>
@@ -150,8 +151,9 @@ function ManageReservations() {
                                                     <td>{booking.userDto?.email || 'N/A'}</td>
                                                     <td>0{booking.userDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <ButtonLightGreen
+                                                        <Button
                                                             onClick={() => deleteBooking(booking.id)}
+                                                            className='button-light'
                                                             text="Verwijderen"
                                                         />
                                                     </td>

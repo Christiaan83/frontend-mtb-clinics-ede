@@ -9,7 +9,7 @@ import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import {Link} from "react-router-dom";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx"
 import rentalInfo from "../../assets/verhuurInfo.jpg";
-import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function RentalPage() {
@@ -128,7 +128,7 @@ function RentalPage() {
                                     <option value="false">Voorvering</option>
                                 </select>
                         </div>
-                        <ButtonDarkGreen
+                        <Button
                             type="submit"
                             text="Zoeken"
                         />
@@ -157,8 +157,9 @@ function RentalPage() {
 
                                     </li>
                                     <Link to={`/mtb-verhuur/${mtb.id}`}>
-                                        <ButtonDarkGreen
+                                        <Button
                                             type="submit"
+                                            className='button-dark'
                                             text="Reserveer mountainbike"
                                         />
                                     </Link>

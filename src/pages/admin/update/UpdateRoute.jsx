@@ -9,7 +9,7 @@ import TypeName from "../../../helpers/changeTypeName.jsx";
 import DifficultyName from "../../../helpers/changeDifficultyName.jsx";
 import RouteMap from "../../../components/pictures/RouteMap.jsx";
 import {getTypeNiveau} from "../../../helpers/getTypeNiveau.jsx";
-import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function UpdateRoute() {
@@ -209,8 +209,9 @@ function UpdateRoute() {
 
                                                 />
                                             </div>
-                                            <ButtonLightGreen
+                                            <Button
                                                 type="submit"
+                                                className='button-light'
                                                 text="Route Aanpassen"
                                             />
                                             {error && <p className="error-message">{error}</p>}

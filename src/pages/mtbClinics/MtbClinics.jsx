@@ -8,7 +8,7 @@ import difficultyName from "../../helpers/changeDifficultyName.jsx";
 import {Link} from "react-router-dom";
 import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
-import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function MtbClinics() {
@@ -79,8 +79,9 @@ return (
                                 <br/>
                             </li>
                             <Link to={`/mtb-clinics/${clinics.id}`}>
-                            <ButtonDarkGreen
+                            <Button
                                 type="submit"
+                                className='button-dark'
                                 text="Boek deze clinic"
                             />
                             </Link>

@@ -5,7 +5,8 @@ import Header from "../../components/header/Header.jsx";
 import InputMask from "react-input-mask";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
-import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
+
+import Button from "../../components/buttons/Button.jsx";
 
 function Register() {
 
@@ -135,9 +136,10 @@ function Register() {
 
                     {error && <p>Dit account bestaat al. Probeer een ander gebruikersnaam of e-mailadres.</p>}
                     {success && <p>U bent succesvol geregistreerd!</p>}
-                    <ButtonLightGreen
+                    <Button
                         type="submit"
                         onClick={handleRegister}
+                        className='button-light'
                         disabled={loading}
                         text={loading ? 'Registreren...' : 'Registreren'}
                     />

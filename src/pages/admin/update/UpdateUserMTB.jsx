@@ -5,7 +5,7 @@ import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
 import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
-import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function UpdateUserMtb() {
@@ -123,8 +123,9 @@ function UpdateUserMtb() {
                                                        onChange={(e) => setMobileNumber(e.target.value)}
                                                 />
                                             </div>
-                                            <ButtonLightGreen
+                                            <Button
                                                 type="submit"
+                                                className='button-light'
                                                 text="Gebruiker Aanpassen"
                                             />
                                             {error && <p className="error-message">{error}</p>}

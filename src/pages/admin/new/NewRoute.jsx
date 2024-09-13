@@ -7,7 +7,7 @@ import Header from "../../../components/header/Header.jsx";
 import {useNavigate} from "react-router-dom";
 import adminPic from "../../../assets/AdminPic.webp";
 import {getTypeNiveau} from "../../../helpers/getTypeNiveau.jsx";
-import ButtonLightGreen from "../../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function NewRoute() {
@@ -199,8 +199,9 @@ function NewRoute() {
                             <input type="file" onChange={(e) => setImageFile(e.target.files[0])}
                                    required/>
                         </div>
-                        <ButtonLightGreen
+                        <Button
                             type="submit"
+                            className='button-light'
                             text="Route Toevoegen"
                         />
                     </form>

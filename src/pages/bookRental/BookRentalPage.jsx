@@ -10,7 +10,7 @@ import HandleDateChange from "../../custom_hooks/handleDateChange.jsx";
 import {generateTimeOptions} from "../../helpers/timeOptions.jsx";
 import InputMask from 'react-input-mask';
 import {formatTime} from "../../helpers/formatTime.jsx";
-import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function BookRentalPage() {
@@ -212,9 +212,10 @@ function BookRentalPage() {
                                     </select>
                                 </label>
 
-                                <ButtonDarkGreen
+                                <Button
                                     type="submit"
                                     onClick={handleRentalAndUserCreation}
+                                    className='button-dark'
                                     text="Boeken"
                                 />
 

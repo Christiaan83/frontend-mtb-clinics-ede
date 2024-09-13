@@ -8,7 +8,7 @@ import './MtbRoutes.css'
 import {useEffect, useState} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom";
-import ButtonDarkGreen from "../../components/buttons/ButtonDarkGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 function MtbRoutes() {
     const [, setAllRoutes] = useState([]);
@@ -132,8 +132,9 @@ function MtbRoutes() {
                                 <option value="CHILD">Kind</option>
                             </select>
                         </div>
-                        <ButtonDarkGreen
+                        <Button
                             type="submit"
+                            className='button-dark'
                             text="Zoeken"
                         />
                     </form>

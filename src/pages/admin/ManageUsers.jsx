@@ -6,7 +6,7 @@ import {AuthContext} from "../../context/AuthContext.jsx";
 import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import {Helmet} from "react-helmet";
-import ButtonLightGreen from "../../components/buttons/ButtonLightGreen.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 function ManageUsers() {
 
@@ -104,14 +104,16 @@ function ManageUsers() {
                                                     <td>{user.mobileNumber}</td>
                                                     <td>
                                                         <Link to={`/admin/users/update/${user.id}`}>
-                                                            <ButtonLightGreen
+                                                            <Button
                                                                 type="submit"
+                                                                className='button-light'
                                                                 text="Update gebruiker"
                                                             />
                                                         </Link>
                                                     </td>
                                                     <td>
-                                                        <ButtonLightGreen onClick={() => deleteUnregisteredUser(user.id)}
+                                                        <Button onClick={() => deleteUnregisteredUser(user.id)}
+                                                                className='button-light'
                                                         text="Verwijderen"
                                                         />
 
@@ -155,15 +157,17 @@ function ManageUsers() {
                                                     ))}</td>
                                                     <td>
                                                         <Link to={`/admin/users/updates/${userUser.username}`}>
-                                                            <ButtonLightGreen
+                                                            <Button
                                                                 type="submit"
+                                                                className='button-light'
                                                                 text="Update gebruiker"
                                                             />
                                                         </Link>
                                                     </td>
                                                     <td>
-                                                        <ButtonLightGreen
+                                                        <Button
                                                             onClick={() => deleteRegisteredUser(userUser.username)}
+                                                            className='button-light'
                                                         text="Verwijderen"/>
                                                     </td>
                                                 </tr>
