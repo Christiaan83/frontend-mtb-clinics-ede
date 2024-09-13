@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import axios from 'axios';
-import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import HandleDateChange from "../handleDateChange.jsx";
 import {generateTimeOptions} from "../../helpers/timeOptions.jsx";
 
 

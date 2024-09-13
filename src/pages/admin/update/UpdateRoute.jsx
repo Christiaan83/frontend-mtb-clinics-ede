@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
-import getUserRole from "../../../helpers/getUserRole.jsx";
+import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import adminPic from "../../../assets/AdminPic.webp";
@@ -9,6 +9,7 @@ import TypeName from "../../../helpers/changeTypeName.jsx";
 import DifficultyName from "../../../helpers/changeDifficultyName.jsx";
 import RouteMap from "../../../components/pictures/RouteMap.jsx";
 import {getTypeNiveau} from "../../../helpers/getTypeNiveau.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function UpdateRoute() {
@@ -208,7 +209,11 @@ function UpdateRoute() {
 
                                                 />
                                             </div>
-                                            <button type="submit">Route Aanpassen</button>
+                                            <Button
+                                                type="submit"
+                                                className='button-light'
+                                                text="Route Aanpassen"
+                                            />
                                             {error && <p className="error-message">{error}</p>}
                                         </form>
                                     )}

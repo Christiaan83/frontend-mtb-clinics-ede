@@ -6,6 +6,8 @@ import InputMask from "react-input-mask";
 import {useNavigate} from "react-router-dom";
 import {Helmet} from "react-helmet";
 
+import Button from "../../components/buttons/Button.jsx";
+
 function Register() {
 
     const [username, setUsername] = useState('');
@@ -134,13 +136,13 @@ function Register() {
 
                     {error && <p>Dit account bestaat al. Probeer een ander gebruikersnaam of e-mailadres.</p>}
                     {success && <p>U bent succesvol geregistreerd!</p>}
-                    <button
+                    <Button
                         type="submit"
                         onClick={handleRegister}
+                        className='button-light'
                         disabled={loading}
-                    >
-                        {loading ? 'Registreren...' : 'Registreren'}
-                    </button>
+                        text={loading ? 'Registreren...' : 'Registreren'}
+                    />
                 </form>
             </div>
         </section>

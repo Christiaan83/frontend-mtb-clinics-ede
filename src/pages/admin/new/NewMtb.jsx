@@ -1,11 +1,12 @@
 import'../Admin.css'
 import {useContext, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
-import getUserRole from "../../../helpers/getUserRole.jsx";
+import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import {useNavigate} from "react-router-dom";
 import adminPic from "../../../assets/AdminPic.webp";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function NewMtb() {
@@ -245,7 +246,11 @@ function NewMtb() {
                             <input type="file" onChange={(e) => setImageFile(e.target.files[0])}
                                    required/>
                         </div>
-                        <button type="submit">Mountainbike Toevoegen</button>
+                        <Button
+                            type="submit"
+                            className='button-light'
+                            text="Mountainbike toevoegen"
+                        />
                     </form>
                 )}
             </section>

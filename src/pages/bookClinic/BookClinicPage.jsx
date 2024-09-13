@@ -9,9 +9,10 @@ import TrainingPicture from "../../components/pictures/TrainingPicture.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
 import changeDifficultyName from "../../helpers/changeDifficultyName.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
-import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import HandleDateChange from "../../custom_hooks/handleDateChange.jsx";
 import difficultyName from "../../helpers/changeDifficultyName.jsx";
 import getDecodedToken from "../../helpers/getDecodedToken.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function BookClinicPage() {
@@ -166,7 +167,12 @@ function BookClinicPage() {
                                 </form>
                             </label>
 
-                            <button className="button" onClick={handleBooking}>Boeken</button>
+                                <Button
+                                    type="submit"
+                                    onClick={handleBooking}
+                                    className='button-dark'
+                                    text="Boeken"
+                                />
                         </div>
                     </form>) : (<p><Link className="link" to="/mijnpagina">Login of Registreer</Link> om de Clinic te kunnen boeken</p>)}
 

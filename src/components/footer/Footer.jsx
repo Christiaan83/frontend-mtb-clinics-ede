@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import './Footer.css'
+import Button from "../buttons/Button.jsx";
 
 function Footer() {
     return (
@@ -20,7 +21,11 @@ function Footer() {
 
                 <div>
                     <Link to="/contact">
-                        <button>Contact</button>
+                        <Button
+                            type="submit"
+                            className='button-light'
+                            text="Contact"
+                        />
                     </Link>
 
                 </div>

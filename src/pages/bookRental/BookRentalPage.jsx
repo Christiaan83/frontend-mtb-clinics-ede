@@ -6,10 +6,11 @@ import Header from "../../components/header/Header.jsx";
 import frameSizeDutch from "../../helpers/mountianbikes/frameSizeDutch.jsx";
 import adultOrChild from "../../helpers/mountianbikes/adultOrChild.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
-import HandleDateChange from "../../helpers/handleDateChange.jsx";
+import HandleDateChange from "../../custom_hooks/handleDateChange.jsx";
 import {generateTimeOptions} from "../../helpers/timeOptions.jsx";
 import InputMask from 'react-input-mask';
 import {formatTime} from "../../helpers/formatTime.jsx";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function BookRentalPage() {
@@ -210,7 +211,14 @@ function BookRentalPage() {
                                         <option value="20:00">20:00</option>
                                     </select>
                                 </label>
-                                <button className="button" onClick={handleRentalAndUserCreation}>Boeken</button>
+
+                                <Button
+                                    type="submit"
+                                    onClick={handleRentalAndUserCreation}
+                                    className='button-dark'
+                                    text="Boeken"
+                                />
+
                             </div>
                         </form>
                     </div>

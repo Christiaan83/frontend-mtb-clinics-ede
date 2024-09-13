@@ -4,10 +4,11 @@ import Header from "../../components/header/Header.jsx";
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import MtbPicture from "../../components/pictures/MtbPicture.jsx";
 import {Link} from "react-router-dom";
 import {Helmet} from "react-helmet";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ManageMountainbikes() {
@@ -124,18 +125,29 @@ function ManageMountainbikes() {
                                     <td>€ {mtb.pricePerDayPart},-</td>
                                     <td>{mtb.amount}</td>
                                     <td>
-                                        <button type="submit"><Link
-                                            to={`/admin/mountainbikes/update/${mtb.id}`}>Update MTB</Link>
-                                        </button>
+                                        <Link
+                                            to={`/admin/mountainbikes/update/${mtb.id}`}>
+                                            <Button
+                                                type="submit"
+                                                className='button-light'
+                                                text="Update MTB"
+                                            /></Link>
                                     </td>
                                     <>
                                         <td key={mtb.id}>
-                                            <button disabled={error}
-                                                    onClick={() => deleteMountainbike(mtb.id)}>Verwijderen
-                                            </button>
+                                            <Button
+                                                    disabled={error}
+                                                    onClick={() => deleteMountainbike(mtb.id)}
+                                                    className='button-light'
+                                                    text="Verwijderen"
+                                            />
                                         </td>
                                         <td>
-                                            <button onClick={() => downloadMtbPicture(mtb.id)}>Downloaden</button>
+                                            <Button
+                                                onClick={() => downloadMtbPicture(mtb.id)}
+                                                className='button-light'
+                                                text="Downloaden"
+                                            />
                                         </td>
 
                                     </>
@@ -143,10 +155,13 @@ function ManageMountainbikes() {
                                 </tbody>
                             </table>) : (<p>Geen mountainbikes gevonden, probeer het opnieuw!</p>)}
                     </div>
-                    <button type="submit" className="add-button">
-                        <Link
-                            to='/admin/mountainbikes/toevoegen'>Nieuwe MTB toevoegen</Link>
-                    </button>
+                    <Link className="add-button"
+                        to='/admin/mountainbikes/toevoegen'>
+                        <Button
+                            type="submit"
+                            className='button-light'
+                            text="Nieuwe MTB toevoegen"
+                        /></Link>
                 </div>
             </section>
         </>);

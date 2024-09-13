@@ -4,10 +4,11 @@ import Header from "../../components/header/Header.jsx";
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {Link} from "react-router-dom";
 import RouteMap from "../../components/pictures/RouteMap.jsx";
 import {Helmet} from "react-helmet";
+import Button from "../../components/buttons/Button.jsx";
 
 function ManageRoutes() {
     const [routes, setRoutes] = useState([]);
@@ -116,20 +117,31 @@ function ManageRoutes() {
                                             {isAuth && userRole === "ADMIN" && (
                                                 <>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/routes/update/${route.id}`}>Update route</Link>
-                                                        </button>
+                                                        <Link
+                                                            to={`/admin/routes/update/${route.id}`}>
+                                                            <Button
+                                                            type="submit"
+                                                            className='button-light'
+                                                            text="Update route"
+                                                            />
+                                                        </Link>
+
                                                     </td>
 
                                                     <td>
-                                                        <button onClick={() => deleteRoute(route.id)}>
-                                                            Verwijderen
-                                                        </button>
+                                                        <Button
+                                                            onClick={() => deleteRoute(route.id)}
+                                                            className='button-light'
+                                                            text="Verwijderen"
+
+                                                        />
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => downloadRoutePicture(route.id)}>
-                                                            Downloaden
-                                                        </button>
+                                                        <Button
+                                                            onClick={() => downloadRoutePicture(route.id)}
+                                                            className='button-light'
+                                                            text="Downloaden"
+                                                        />
                                                     </td>
                                                 </>
                                             )}
@@ -141,10 +153,13 @@ function ManageRoutes() {
                                 <p>Geen routes gevonden, probeer het opnieuw!</p>
                             )}
                         </div>
-                        <button type="submit" className="add-button">
-                            <Link
-                                to='/admin/routes/toevoegen'>Nieuwe Route toevoegen</Link>
-                        </button>
+                        <Link className="add-button"
+                              to='/admin/routes/toevoegen'>
+                            <Button
+                                type="submit"
+                                className='button-light'
+                                text="Nieuwe Route toevoegen"
+                            /></Link>
                     </div>
                 </section>
             </>

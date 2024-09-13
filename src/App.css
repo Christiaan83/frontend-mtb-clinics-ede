@@ -1,8 +1,4 @@
 
-button:hover {
-  cursor: pointer;
-}
-
 h1 {
   font-size: 3.4em;
   line-height: 1.1;
@@ -66,16 +62,6 @@ input::after, textarea::after {
   animation: blink 1s steps(2, start) infinite;
 }
 
-button {
-  background-color: var(--color-secondary);
-  color: var(--color-white);
-  font-weight: 600;
-  padding: 12px;
-  border: none;
-  border-radius: 4px;
-  display: inline;
-}
-
 .search-info-container{
   display: flex;
   flex-basis: fit-content;
@@ -102,11 +88,6 @@ button {
   background-color: var(--color-background-primary);
   box-shadow: 2px 3px 4px 0 rgba(0,0,0,0.08);
 
-}
-.button{
-  width: 130px;
-  height: auto;
-  background-color: var(--color-primary);
 }
 
 .blocks-section{

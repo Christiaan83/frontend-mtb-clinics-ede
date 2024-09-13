@@ -1,10 +1,11 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
-import getUserRole from "../../../helpers/getUserRole.jsx";
+import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import adminPic from "../../../assets/AdminPic.webp";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function UpdateUser() {
@@ -178,7 +179,13 @@ function UpdateUser() {
                                                     />
                                                 </div>
                                             </div>
-                                            <button type="submit">Gebruiker Aanpassen</button>
+
+                                            <Button
+                                                type="submit"
+                                                className='button-light'
+                                                text="Gebruiker Aanpassen"
+                                            />
+
                                             {error && <p className="error-message">{error}</p>}
                                         </form>
                                     )}

@@ -1,12 +1,13 @@
 import'../Admin.css'
 import {useContext, useState} from "react";
 import {AuthContext} from "../../../context/AuthContext.jsx";
-import getUserRole from "../../../helpers/getUserRole.jsx";
+import getUserRole from "../../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import Header from "../../../components/header/Header.jsx";
 import {useNavigate} from "react-router-dom";
 import adminPic from "../../../assets/AdminPic.webp";
 import {getTypeNiveau} from "../../../helpers/getTypeNiveau.jsx";
+import Button from "../../../components/buttons/Button.jsx";
 
 
 function NewRoute() {
@@ -198,7 +199,11 @@ function NewRoute() {
                             <input type="file" onChange={(e) => setImageFile(e.target.files[0])}
                                    required/>
                         </div>
-                        <button type="submit">Route Toevoegen</button>
+                        <Button
+                            type="submit"
+                            className='button-light'
+                            text="Route Toevoegen"
+                        />
                     </form>
                 )}
             </section>

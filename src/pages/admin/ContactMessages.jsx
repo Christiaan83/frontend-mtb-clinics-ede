@@ -4,8 +4,9 @@ import axios from "axios";
 import adminPic from "../../assets/AdminPic.webp";
 import Header from "../../components/header/Header.jsx";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {Helmet} from "react-helmet";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ContactMessages() {
@@ -80,9 +81,11 @@ function ContactMessages() {
                                             </div>
                                             <br/>
                                             <div>
-                                                <button onClick={() => deleteForm(form.id)}>
-                                                    Bericht verwijderen
-                                                </button>
+                                                <Button
+                                                    onClick={() => deleteForm(form.id)}
+                                                    className='button-light'
+                                                    text="Bericht verwijderen"
+                                                />
                                             </div>
                                             <p></p>
                                         </li>

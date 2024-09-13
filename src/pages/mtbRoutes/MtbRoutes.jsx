@@ -8,6 +8,7 @@ import './MtbRoutes.css'
 import {useEffect, useState} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import Button from "../../components/buttons/Button.jsx";
 
 function MtbRoutes() {
     const [, setAllRoutes] = useState([]);
@@ -131,7 +132,11 @@ function MtbRoutes() {
                                 <option value="CHILD">Kind</option>
                             </select>
                         </div>
-                        <button type="submit" className="button">Zoeken</button>
+                        <Button
+                            type="submit"
+                            className='button-dark'
+                            text="Zoeken"
+                        />
                     </form>
                     <div className="in-between">
                         <p><Link className="refresh-home" to="/">Home</Link></p>

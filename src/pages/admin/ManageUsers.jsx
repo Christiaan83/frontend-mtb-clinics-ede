@@ -3,9 +3,10 @@ import Header from "../../components/header/Header.jsx";
 import {Link} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import axios from "axios";
 import {Helmet} from "react-helmet";
+import Button from "../../components/buttons/Button.jsx";
 
 function ManageUsers() {
 
@@ -102,15 +103,20 @@ function ManageUsers() {
                                                     <td>{user.email}</td>
                                                     <td>{user.mobileNumber}</td>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/users/update/${user.id}`}>Update
-                                                            Gebruiker</Link>
-                                                        </button>
+                                                        <Link to={`/admin/users/update/${user.id}`}>
+                                                            <Button
+                                                                type="submit"
+                                                                className='button-light'
+                                                                text="Update gebruiker"
+                                                            />
+                                                        </Link>
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => deleteUnregisteredUser(user.id)}>
-                                                            Verwijderen
-                                                        </button>
+                                                        <Button onClick={() => deleteUnregisteredUser(user.id)}
+                                                                className='button-light'
+                                                        text="Verwijderen"
+                                                        />
+
                                                     </td>
                                                 </tr>
                                             ))}
@@ -150,15 +156,19 @@ function ManageUsers() {
                                                 </span>
                                                     ))}</td>
                                                     <td>
-                                                        <button type="submit"><Link
-                                                            to={`/admin/users/updates/${userUser.username}`}>Update
-                                                            Gebruiker</Link>
-                                                        </button>
+                                                        <Link to={`/admin/users/updates/${userUser.username}`}>
+                                                            <Button
+                                                                type="submit"
+                                                                className='button-light'
+                                                                text="Update gebruiker"
+                                                            />
+                                                        </Link>
                                                     </td>
                                                     <td>
-                                                        <button
-                                                            onClick={() => deleteRegisteredUser(userUser.username)}>Verwijderen
-                                                        </button>
+                                                        <Button
+                                                            onClick={() => deleteRegisteredUser(userUser.username)}
+                                                            className='button-light'
+                                                        text="Verwijderen"/>
                                                     </td>
                                                 </tr>
                                             ))}

@@ -3,9 +3,10 @@ import Header from "../../components/header/Header.jsx";
 import axios from "axios";
 import {useContext, useEffect, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 import {formatTime} from "../../helpers/formatTime.jsx";
 import {Helmet} from "react-helmet";
+import Button from "../../components/buttons/Button.jsx";
 
 
 function ManageReservations() {
@@ -107,8 +108,11 @@ function ManageReservations() {
                                                     <td>{rental.unregisteredUserDto?.email || 'N/A'}</td>
                                                     <td>0{rental.unregisteredUserDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <button onClick={() => deleteRental(rental.id)}>Verwijderen
-                                                        </button>
+                                                        <Button
+                                                            onClick={() => deleteRental(rental.id)}
+                                                            className='button-light'
+                                                            text="Verwijderen"
+                                                        />
                                                     </td>
                                                 </tr>
                                             ))}
@@ -147,8 +151,11 @@ function ManageReservations() {
                                                     <td>{booking.userDto?.email || 'N/A'}</td>
                                                     <td>0{booking.userDto?.mobileNumber || 'N/A'}</td>
                                                     <td>
-                                                        <button onClick={() => deleteBooking(booking.id)}>Verwijderen
-                                                        </button>
+                                                        <Button
+                                                            onClick={() => deleteBooking(booking.id)}
+                                                            className='button-light'
+                                                            text="Verwijderen"
+                                                        />
                                                     </td>
                                                 </tr>
                                             ))}

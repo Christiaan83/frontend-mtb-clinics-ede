@@ -1,10 +1,10 @@
 import './Navigation.css';
 import {NavLink} from "react-router-dom";
 import { User } from "@phosphor-icons/react";
-import { scrollerHelper } from '../../helpers/scrollerHelper.jsx'
+import { scrollerHelper } from '../../custom_hooks/scrollerHelper.jsx'
 import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.jsx";
-import getUserRole from "../../helpers/getUserRole.jsx";
+import getUserRole from "../../custom_hooks/getUserRole.jsx";
 
 
 function Navigation() {
