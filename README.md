@@ -22,7 +22,8 @@ Deze full-stack applicatie is ontworpen om het beheer van mountainbike clinics e
 
 ### Frontend Setup:
 
-+ Clone naar je front-end IDE (bv. Webstorm)
++ Clone naar je front-end IDE (bv. Webstorm).
++ Installeer Node.js op je laptop/computer.
 + Installeer de dependencies met npm install.
 + Start de development server met npm run dev.
 
